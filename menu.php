@@ -1,35 +1,125 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barra de Menu Simples</title>
+    <title>Document</title>
     <link rel="stylesheet" href="css/menu.css">
 </head>
 <body>
+<header class="topbar">
+        <div class="container">
+          <img src="img/logo.png" alt="" class="logo">
+          <nav class="menu">
+          <a href="index.php">Home</a>
+            <div class="dropdown">
+            
+            
+              <button class="dropbtn">Funcionalidades</button>
+              <div class="dropdown-content">
+                <div class="dropdown-column">
+                  <a href="agenda.php">Agenda Médica</a>
+                  <a href="#">Telemedicina</a>
+                  <a href="#">Lista de espera</a>
+                  <a href="#">Gestão financeira</a>
+                </div>
+                <div class="dropdown-column">
+                  <a href="#">Pré agendamento do paciente</a>
+                  <a href="#">Pré-natal</a>
+                  <a href="#">Prontuário eletrônico</a>
+                </div>
+              </div>
+            </div>
+            
+            <a href="planos.php">Preços</a>
+            <a href="contato.php">Contato</a>
+           
+          </nav>
+          <div class="actions">
+            <a href="login.php"><button class="btn-outline">Login</button></a>
+            <button class="btn-primary">Solicite um orçamento</button>
+          </div>
+        </div>
+      </header>
+      
+<!-- Modal de Orçamento -->
+<div class="modal-overlay" id="orcamentoModal">
+  <div class="modal-container">
+    <button class="close-modal">&times;</button>
+    
+    <div class="modal-header">
+      <h3>Preço</h3>
+      <p>Quer ter mais controle sobre a gestão da sua clínica?</p>
+      <p>Preencha as informações e agende uma demonstração:</p>
+    </div>
 
-<div class="navbar">
+    <form class="modal-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome*</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Sobrenome*</label>
+          <input type="text" required>
+        </div>
+      </div>
 
-<a href=""><img src="img/logo.png" alt="logo" class="logo"></a>
+      <div class="form-row">
+        <div class="form-group">
+          <label>WhatsApp*</label>
+          <input type="tel" placeholder="(51) 99999-9000" required>
+        </div>
+      </div>
 
-<div class="letras">
-  <a href="principal.php" class="titulo">Home</a>
-  <a href="#sobre" class="titulo">Sobre</a>
-  <a href="agendamento.php" class="titulo">Agendamento</a>
-  <a href="#contato" class="titulo">Contato</a>
+      <div class="form-group">
+        <label>E-mail*</label>
+        <input type="email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Especialidade*</label>
+        <select required>
+          <option value="">Selecione</option>
+          <option>Clínico Geral</option>
+          <option>Cardiologia</option>
+          <option>Dermatologia</option>
+          <!-- Adicione outras especialidades -->
+        </select>
+      </div>
+
+      <div class="form-checkbox">
+        <input type="checkbox" id="privacidade" required>
+        <label for="privacidade">Estou de acordo em fornecer meus dados para contato de acordo com a Política de Privacidade.*</label>
+      </div>
+
+      <button type="submit" class="btn-submit">Quero mais informações</button>
+    </form>
+  </div>
 </div>
-  
-<div class="group">
-  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
-  <input placeholder="Search" type="search" class="input">
-</div>
 
+<script>
+  // Abrir modal
+  document.querySelector('.btn-primary').addEventListener('click', function() {
+    document.getElementById('orcamentoModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Desabilita scroll da página
+  });
 
-  <a href=""><img src="img/menu.png" alt="menu" class="menuicon"></a>
-  <a href="cadastro.php"><img src="img/usuario.png" alt="menu" class="usuarioicon"></a>
-</div>
+  // Fechar modal
+  document.querySelector('.close-modal').addEventListener('click', function() {
+    document.getElementById('orcamentoModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Reabilita scroll
+  });
 
-
+  // Fechar ao clicar fora
+  document.getElementById('orcamentoModal').addEventListener('click', function(e) {
+    if(e.target === this) {
+      this.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
+</script>
 
 </body>
 </html>
