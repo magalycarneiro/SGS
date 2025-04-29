@@ -1,0 +1,156 @@
+/* Prontuário Section */
+.prontuario-section {
+    background-color: #f8f9ff;
+    padding: 80px 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .section-badge {
+    display: inline-block;
+    background-color: #5f0099;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .section-title {
+    color: #222;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+  
+  .text-content {
+    flex: 1;
+  }
+  
+  .image-content {
+    flex: 1;
+  }
+  
+  .section-description {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .feature-icon {
+    width: 24px;
+    height: 24px;
+    color: #5f0099;
+    flex-shrink: 0;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .primary-button, .secondary-button {
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .primary-button {
+    background-color: #5f0099;
+    color: white;
+    border: none;
+  }
+  
+  .primary-button:hover {
+    background-color: #4a0077;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(95, 0, 153, 0.3);
+  }
+  
+  .secondary-button {
+    background-color: transparent;
+    color: #5f0099;
+    border: 2px solid #5f0099;
+  }
+  
+  .secondary-button:hover {
+    background-color: rgba(95, 0, 153, 0.1);
+  }
+  
+  .feature-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .content-wrapper {
+      flex-direction: column;
+      gap: 40px;
+    }
+    
+    .image-content {
+      order: -1;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .prontuario-section {
+      padding: 60px 20px;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+    }
+    
+    .primary-button, .secondary-button {
+      width: 100%;
+      text-align: center;
+    }
+  }

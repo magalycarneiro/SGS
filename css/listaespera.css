@@ -1,0 +1,106 @@
+/* Lista de Espera Section */
+.lista-espera-section {
+    background-color: #f8f9ff;
+    padding: 80px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-title {
+    color: #5f0099;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #5f0099;
+  }
+  
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .description, .conclusion {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .features-list {
+    margin: 25px 0;
+    padding-left: 20px;
+  }
+  
+  .feature-item {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .feature-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    background-color: #5f0099;
+    border-radius: 50%;
+  }
+  
+  .cta-button {
+    display: block;
+    background-color: #5f0099;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 40px auto 0;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #4a0077;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(95, 0, 153, 0.3);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .lista-espera-section {
+      padding: 60px 20px;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .description, .conclusion, .feature-item {
+      font-size: 1rem;
+    }
+    
+    .cta-button {
+      padding: 12px 24px;
+    }
+  }

@@ -1,0 +1,113 @@
+/* Gestão Financeira Section */
+.gestao-financeira-section {
+    background-color: #f8f9ff;
+    padding: 80px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-title {
+    color: #5f0099;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #5f0099;
+  }
+  
+  .section-description {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .feature-card {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .feature-title {
+    color: #5f0099;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .feature-text {
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .cta-button {
+    display: block;
+    background-color: #5f0099;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 30px auto 0;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #4a0077;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(95, 0, 153, 0.3);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .gestao-financeira-section {
+      padding: 60px 20px;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .section-description {
+      font-size: 1.1rem;
+    }
+    
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }

@@ -20,14 +20,13 @@
               <div class="dropdown-content">
                 <div class="dropdown-column">
                   <a href="agenda.php">Agenda Médica</a>
-                  <a href="#">Telemedicina</a>
-                  <a href="#">Lista de espera</a>
-                  <a href="#">Gestão financeira</a>
+                  <a href="listaespera.php">Lista de espera</a>
+                  <a href="gestaofinanceira.php">Gestão financeira</a>
                 </div>
                 <div class="dropdown-column">
-                  <a href="#">Pré agendamento do paciente</a>
-                  <a href="#">Pré-natal</a>
-                  <a href="#">Prontuário eletrônico</a>
+                  <a href="agendamento.php">Agendamento do paciente</a>
+                  <a href="prenatal.php">Pré-natal</a>
+                  <a href="prontuario.php">Prontuário eletrônico</a>
                 </div>
               </div>
             </div>

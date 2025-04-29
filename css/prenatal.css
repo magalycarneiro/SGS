@@ -1,0 +1,138 @@
+/* Pré-natal Section */
+.pre-natal-section {
+    background-color: #f8f9ff;
+    padding: 80px 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .section-title {
+    color: #5f0099;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  
+  .section-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  
+  .feature-image img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .feature-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .feature-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    color: #5f0099;
+  }
+  
+  .feature-title {
+    color: #5f0099;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  .feature-text {
+    color: #555;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+  
+  .cta-button {
+    background-color: #5f0099;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #4a0077;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(95, 0, 153, 0.3);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .feature-image {
+      order: -1;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .pre-natal-section {
+      padding: 60px 20px;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .section-subtitle {
+      font-size: 1.1rem;
+    }
+    
+    .feature-item {
+      gap: 15px;
+    }
+    
+    .feature-icon {
+      font-size: 1.5rem;
+    }
+  }

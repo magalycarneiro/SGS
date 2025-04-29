@@ -1,0 +1,135 @@
+/* Pré-cadastro Section */
+.pre-cadastro-section {
+    background-color: #f8f9ff;
+    padding: 80px 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-title {
+    color: #5f0099;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .section-intro {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+  }
+  
+  .benefits-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .benefit-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .benefit-title {
+    color: #5f0099;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .benefit-text {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  .cta-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .cta-button {
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button.primary {
+    background-color: #5f0099;
+    color: white;
+    border: none;
+  }
+  
+  .cta-button.primary:hover {
+    background-color: #4a0077;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(95, 0, 153, 0.3);
+  }
+  
+  .cta-button.secondary {
+    background-color: transparent;
+    color: #5f0099;
+    border: 2px solid #5f0099;
+  }
+  
+  .cta-button.secondary:hover {
+    background-color: rgba(95, 0, 153, 0.1);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .pre-cadastro-section {
+      padding: 60px 20px;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .section-intro {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+    
+    .benefits-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .cta-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .cta-button {
+      width: 100%;
+      max-width: 300px;
+    }
+  }

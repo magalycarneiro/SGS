@@ -1,19 +1,61 @@
 <?php
 
-include "menu.php";
-
 session_start();
+
+// Simulação de banco de dados de usuários
+$usuarios = [
+    'admin' => [
+        'senha' => 'admin',
+        'tipo' => 'admin',
+        'nome' => 'Administrador'
+    ],
+    'medico1' => [
+        'senha' => 'medico123',
+        'tipo' => 'medico',
+        'nome' => 'Dr. João Silva',
+        'especialidade' => 'Cardiologia'
+    ],
+    'secretaria1' => [
+        'senha' => 'secretaria123',
+        'tipo' => 'secretaria',
+        'nome' => 'Maria Souza'
+    ],
+    'paciente1' => [
+        'senha' => 'paciente123',
+        'tipo' => 'paciente',
+        'nome' => 'Carlos Oliveira',
+        'prontuario' => 'P12345'
+    ]
+];
 
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // Validação simples (usuário: admin, senha: admin)
-    if ($username === 'admin' && $password === 'admin') {
+    // Verifica se o usuário existe e a senha está correta
+    if (isset($usuarios[$username]) && $usuarios[$username]['senha'] === $password) {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        header("Location: dashboard.php"); // Redireciona para a página de dashboard
+        $_SESSION['userdata'] = $usuarios[$username];
+        
+        // Redireciona conforme o tipo de usuário
+        switch ($usuarios[$username]['tipo']) {
+            case 'admin':
+                header("Location: admin.php");
+                break;
+            case 'medico':
+                header("Location: clinica/medico.php");
+                break;
+            case 'secretaria':
+                header("Location: clinica/secretaria.php");
+                break;
+            case 'paciente':
+                header("Location: clinica/paciente.php");
+                break;
+            default:
+                header("Location: index.php");
+        }
         exit;
     } else {
         $error = "Credenciais inválidas!";
@@ -21,43 +63,177 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/login.css">
+    <title>Login - Clínica Médica</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('clinica-bg.jpg');
+            background-size: cover;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            border-top: 5px solid #5f0099;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .logo img {
+            height: 80px;
+        }
+        .form-title {
+            text-align: center;
+            color: #5f0099;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            border-color: #5f0099;
+            outline: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #5f0099;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #5f0099;
+        }
+        .error-message {
+            color: #dc3545;
+            margin-bottom: 1rem;
+            text-align: center;
+            padding: 0.5rem;
+            background-color: #f8d7da;
+            border-radius: 5px;
+            border: 1px solid #f5c6cb;
+        }
+        .user-type-selector {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .user-type {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-right: 1px solid #ddd;
+        }
+        .user-type:last-child {
+            border-right: none;
+        }
+        .user-type.active {
+            background-color: #5f0099;
+            color: white;
+        }
+        .user-type:hover {
+            background-color: #e7f1ff;
+        }
+        .user-type.active:hover {
+            background-color: #5f0099;
+        }
+        .footer-links {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .footer-links a {
+            color: #5f0099;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <form class="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div class="flex-column">
-            <label>Email</label>
-        </div>
-        <div class="inputForm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32" height="20"><g data-name="Layer 3" id="Layer_3"><path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path></g></svg>
-            <input placeholder="Enter your Email" class="input" type="text" name="email" required>
+    <div class="login-container">
+        <div class="logo">
+            <img src="img/logo3.png" alt="Clínica Médica">
         </div>
         
-        <div class="flex-column">
-            <label>Password</label>
-        </div>
-        <div class="inputForm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>        
-            <input placeholder="Enter your Password" class="input" type="password" name="password" required>
-        </div>
+        <h2 class="form-title">Acesso ao Sistema</h2>
         
-        <div class="flex-row">
-            <div>
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">Remember me</label>
-            </div>
+        <div class="user-type-selector">
+            <div class="user-type active" data-type="paciente">Paciente</div>
+            <div class="user-type" data-type="medico">Médico</div>
+            <div class="user-type" data-type="secretaria">Clinica</div>
         </div>
         
         <?php if (!empty($error)): ?>
             <div class="error-message"><?php echo $error; ?></div>
         <?php endif; ?>
         
-        <button type="submit" class="button-submit">Sign In</button>
-    </form>
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <div class="form-group">
+                <label for="email">Usuário (CPF/CRM/ID)</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Digite seu usuário" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+            </div>
+            
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+        
+       
+    </div>
+
+    <script>
+        // Script para seleção do tipo de usuário
+        document.querySelectorAll('.user-type').forEach(type => {
+            type.addEventListener('click', function() {
+                document.querySelectorAll('.user-type').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // Você pode adicionar aqui lógica para mudar o formulário conforme o tipo
+            });
+        });
+    </script>
 </body>
 </html>
