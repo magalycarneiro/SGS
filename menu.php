@@ -10,7 +10,7 @@
 <body>
 <header class="topbar">
         <div class="container">
-          <img src="img/logo.png" alt="" class="logo">
+          <img src="img/logo3.png" alt="" class="logo">
           <nav class="menu">
           <a href="index.php">Home</a>
             <div class="dropdown">
