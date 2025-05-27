@@ -10,16 +10,21 @@
     <form action="index.php" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Formulário de Agendamento</legend>
-            <label for="id">Código da Consulta:</label><br>
-            <input type="text" name="id" readonly value={id}><br><br>
+            <label for="idconsulta">Código da Consulta:</label><br>
+            <input type="text" name="idconsulta" readonly value={idconsulta}><br><br>
+            <label for="status">Status da consulta</label><br>
+            <select name="status" id="status">
+                <option value="1">Confirmada</option>
+                <option value="2">Não confirmada</option>
+            </select><br><br>
             <label for="paciente">Nome do Paciente:</label><br>
-            <input type="text" name="paciente" value={paciente} required><br><br>
+            <input type="text" name="paciente" value={paciente}><br><br>
             <label for="medico">Médico Responsável:</label><br>
-            <input type="text" name="medico" value={medico} required><br><br>
-            <label for="data">Data e Horário:</label><br>
-            <input type="datetime-local" name="data" value={data} required><br><br>
+            <input type="text" name="medico" value={medico}><br><br>
+            <label for="data_hora">Data e Horário:</label><br>
+            <input type="datetime-local" name="data_hora" value={data_hora}><br><br>
             <label for="clinica">Clínica/Unidade de Saúde:</label><br>
-            <input type="text" name="clinica" value={clinica} required><br><br>
+            <input type="text" name="clinica" value={clinica}><br><br>
             <button type="submit" name="acao" value="salvar">Agendar Consulta</button>
             <button type="submit" name="acao" value="excluir">Cancelar Consulta</button>
             <input type="reset" value="Limpar Campos">

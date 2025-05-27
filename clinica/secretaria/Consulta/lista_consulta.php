@@ -8,14 +8,11 @@ $itens = '';
 foreach($lista as $consulta) {
     $item = file_get_contents('itens_listagem_consultas.html');
     
-    // Handle file attachments display
-    $anexos = $consulta->getAnexos();
-    $hide_anexos = empty($anexos) ? 'style="display:none"' : '';
-    
-    $item = str_replace('{id}', $consulta->getId(), $item);
+    $item = str_replace('{idconsulta}', $consulta->getIdconsulta(), $item);
+    $item = str_replace('{status}', formatarStatus($consulta->getStatus()), $item);
+    $item = str_replace('{data_hora}', formatarDataHora($consulta->getDataHora()), $item);
     $item = str_replace('{paciente}', $consulta->getPaciente(), $item);
     $item = str_replace('{medico}', $consulta->getMedico(), $item);
-    $item = str_replace('{data}', formatarData($consulta->getData()), $item);
     $item = str_replace('{clinica}', $consulta->getClinica(), $item);
     
     $itens .= $item;
@@ -26,9 +23,9 @@ $listagem = str_replace('{itens}', $itens, $listagem);
 print($listagem);
 
 // Helper function to format date
-function formatarData($data) {
-    if (empty($data)) return "";
-    $date = new DateTime($data);
+function formatarDataHora($data_hora) {
+    if (empty($data_hora)) return "";
+    $date = new DateTime($data_hora);
     return $date->format('d/m/Y H:i');
 }
 ?>
