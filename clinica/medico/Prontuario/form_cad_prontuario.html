@@ -5,32 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Prontuário Médico</title>
     <style>
-        fieldset {
-            margin: 20px;
+        <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Prontuário Médico</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFFDE3;
+            color: #3A304C;
+            margin: 0;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            max-width: 600px;
         }
+        
+        h1 {
+            color: #000000;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFFEEA;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        fieldset {
+            border: 2px solid #DED1EA;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 0;
+            background-color: white;
+        }
+        
+        legend {
+            font-weight: bold;
+            color: #614F81;
+            padding: 0 10px;
+            font-size: 1.2em;
+        }
+        
         label {
             display: block;
-            margin-top: 10px;
-            font-weight: bold;
+            margin-top: 20px;
+            font-weight: 600;
+            color: #3A304C;
         }
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
+        
+        input[type="text"], 
         textarea {
-            height: 100px;
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            box-sizing: border-box;
+            border: 2px solid #DED1EA;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1em;
+            background-color: #FFFEEA;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        input[type="text"]:focus, 
+        textarea:focus {
+            border-color: #614F81;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(97, 79, 129, 0.2);
+        }
+        
+        input[type="text"][readonly] {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+        
+        textarea {
+            height: 120px;
             resize: vertical;
         }
-        button, input[type="reset"] {
-            margin-top: 15px;
-            padding: 8px 15px;
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        button, 
+        input[type="reset"] {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+            font-size: 1em;
+        }
+        
+        button[type="submit"] {
+            background-color: #614F81;
+            color: white;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #3A304C;
+            transform: translateY(-2px);
+        }
+        
+        button[name="acao"][value="excluir"] {
+            background-color: #d9534f;
+            color: white;
+        }
+        
+        button[name="acao"][value="excluir"]:hover {
+            background-color: #c9302c;
+            transform: translateY(-2px);
+        }
+        
+        input[type="reset"] {
+            background-color: #F7D08E;
+            color: #3A304C;
+        }
+        
+        input[type="reset"]:hover {
+            background-color: #f0c475;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button, 
+            input[type="reset"] {
+                width: 100%;
+            }
         }
     </style>
 </head>
