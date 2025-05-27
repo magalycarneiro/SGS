@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Prontuário Médico</title>
+    <style>
+        fieldset {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 600px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button, input[type="reset"] {
+            margin-top: 15px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prontuário</h1>
+    <form action="index.php" method="post" enctype="multipart/form-data">
+        <fieldset>
+        
+            <label for="idPRONTUARIO">Código do Prontuário:</label>
+            <input type="text" name="idPRONTUARIO" readonly value="{idPRONTUARIO}">
+            
+            <label for="prescricao">Prescrição Médica:</label>
+            <textarea name="prescricao">{prescricao}</textarea>
+            
+            <label for="observacoes">Observações:</label>
+            <textarea name="observacoes">{observacoes}</textarea>
+            
+            <label for="diagnostico">Diagnóstico:</label>
+            <textarea name="diagnostico">{diagnostico}</textarea>
+            
+            <button type="submit" name="acao" value="salvar">Salvar</button>
+            <button type="submit" name="acao" value="excluir">Excluir</button>
+            <input type="reset" value="Cancelar">
+        </fieldset>
+    </form>
+</body>
+</html>

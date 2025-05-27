@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 // Simulação de banco de dados de usuários
@@ -45,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: admin.php");
                 break;
             case 'medico':
-                header("Location: clinica/medico.php");
+                header("Location: ../clinica/medico/index.php");  
                 break;
             case 'secretaria':
                 header("Location: clinica/secretaria.php");
@@ -62,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -69,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Clínica Médica</title>
     <style>
+    
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
@@ -222,7 +223,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="btn">Entrar</button>
         </form>
         
-       
+        <div class="footer-links">
+            <a href="#">Esqueci minha senha</a> | <a href="#">Ajuda</a>
+        </div>
     </div>
 
     <script>
