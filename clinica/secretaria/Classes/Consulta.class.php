@@ -2,16 +2,22 @@
 require_once(__DIR__ . '/../../Classe/Database.class.php');
 
 
-class Atividade{
+class Consulta{
     private int $id;
     private $status;
     private $data_hora;
+    private $medico;
+    private $paciente;
+    private $clinica;
 
     // construtor da classe
     public function __construct($id,$status,$data_hora){
         $this->id = $id;
         $this->status = $status;
         $this->data_hora = $data_hora;
+        $this->medico = $medico;
+        $this->paciente = $paciente;
+        $this->clinica = $clinica;
     }
 
     // função / interface para aterar e ler
@@ -29,11 +35,32 @@ class Atividade{
             $this->id = $id;
     }
 
-    public function setDataHora($peso){
+    public function setDataHora($data_hora){
             if ($data_hora == "")
                 throw new Exception("Erro, a data e hora devem ser informadas!");
             else
                 $this->data_hora = $data_hora;
+    }
+
+    public function setMedico($medico){
+        if ($medico == "")
+            throw new Exception("Erro, o médico deve ser informado!");
+        else
+            $this->medico = $medico;
+    }
+
+    public function setPaciente($paciente){
+        if ($paciente == "")
+            throw new Exception("Erro, o paciente deve ser informado!");
+        else
+            $this->paciente = $paciente;
+    }
+
+    public function setClinica($clinica){
+        if ($clinica == "")
+            throw new Exception("Erro, a clínica deve ser informada!");
+        else
+            $this->clinica = $clinica;
     }
 
     public function getId(): int{
@@ -45,64 +72,81 @@ class Atividade{
     public function getDataHora(): String{
         return $this->data_hora;
     }
+    public function getMedico(): String{
+        return $this->medico;
+    }
+    public function getPaciente(): String{
+        return $this->paciente;
+    }
+    public function getClinica(): String{
+        return $this->clinica;
+    }
 
-    // método mágico para imprimir uma atividade
+    // método mágico para imprimir uma consulta
     public function __toString():String{  
         $str = "Consulta: $this->id - $this->status
-                 - Data_hora: $this->peso";        
+                 - Data_hora: $this->peso,
+                 - Medico: $this->medico,
+                 - Paciente: $this->paciente,
+                 - Clinica: $this->clinica";        
         return $str;
     }
 
-    // insere uma atividade no banco 
+    // insere uma consulta no banco 
     public function inserir():Bool{
         // montar o sql/ query
         $sql = "INSERT INTO consulta 
-                    (status,data_hora)
-                    VALUES(:descricao, :peso, :anexo)";
+                    (status,data_hora, medico, paciente, clinica)
+                    VALUES(:status, :data_hora, :medico, :paciente, :clinica)";
         
-        $parametros = array(':descricao'=>$this->getDescricao(),
-                            ':peso'=>$this->getPeso(),
-                            ':anexo'=>$this->getAnexo());
+        $parametros = array(':status'=>$this->getStatus(),
+                            ':data_hora'=>$this->getDataHora(),
+                            ':medico'=>$this->getMedico(),
+                            ':paciente'=>$this->getPaciente(),
+                            ':clinica'=>$this->getClinica());
         
         return Database::executar($sql, $parametros) == true;
     }
 
     public static function listar($tipo=0, $info=''):Array{
-        $sql = "SELECT * FROM atividade";
+        $sql = "SELECT * FROM consulta";
         switch ($tipo){
             case 0: break;
             case 1: $sql .= " WHERE id = :info ORDER BY id"; break; // filtro por ID
-            case 2: $sql .= " WHERE descricao like :info ORDER BY descricao"; $info = '%'.$info.'%'; break; // filtro por descrição
+            case 2: $sql .= " WHERE status like :info ORDER BY status"; $info = '%'.$info.'%'; break; // filtro por descrição
         }
         $parametros = array();
         if ($tipo > 0)
             $parametros = [':info'=>$info];
 
         $comando = Database::executar($sql, $parametros);
-        //$resultado = $comando->fetchAll();
-        $atividades = [];
+        $consultas = [];
         while ($registro = $comando->fetch()){
-            $atividade = new Atividade($registro['id'],$registro['descricao'],$registro['peso'],$registro['anexo']);
-            array_push($atividades,$atividade);
+            $consulta = new Consulta($registro['id'],$registro['status'],$registro['data_hora'],$medico['medico'],$paciente['paciente'],$clinica['clinica']);
+            array_push($consultas,$consulta);
         }
-        return $atividades;
+        return $consultas;
     }
 
     public function alterar():Bool{       
-       $sql = "UPDATE atividade
-                  SET descricao = :descricao, 
-                      peso = :peso,
-                      anexo = :anexo
+       $sql = "UPDATE consulta
+                  SET status = :status, 
+                      data_hora = :data_hora,
+                      medico = :medico,
+                      paciente = :paciente,
+                      clinica = :clinica
                 WHERE id = :id";
          $parametros = array(':id'=>$this->getid(),
-                        ':descricao'=>$this->getDescricao(),
-                        ':peso'=>$this->getPeso(),
-                        ':anexo'=>$this->getAnexo());
+                        ':status'=>$this->getStatus(),
+                        ':data_hora'=>$this->getDataHora(),
+                        ':medico'=>$this->getMedico(),
+                        ':paciente'=>$this->getPaciente(),
+                        ':clinica'=>$this->getClinica());
         return Database::executar($sql, $parametros) == true;
     }
 
     public function excluir():Bool{
-        $sql = "DELETE FROM atividade
+        $sql = "DELETE FROM consulta
                       WHERE id = :id";
         $parametros = array(':id'=>$this->getid());
         return Database::executar($sql, $parametros) == true;
