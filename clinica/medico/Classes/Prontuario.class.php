@@ -114,10 +114,10 @@ class Prontuario {
 
         while ($registro = $comando->fetch()) {
             $prontuario = new Prontuario(
-                $registro['idPRONTUARIO'] ,
-                $registro['PRESCRICAO'] ,
-                $registro['OBSERVACOES'],
-                $registro['DIAGNOSTICO'] );
+                $registro['idprontuario'] ,
+                $registro['prescricao'] ,
+                $registro['observacoes'],
+                $registro['diagnostico'] );
             $lista[] = $prontuario;
         }
 
