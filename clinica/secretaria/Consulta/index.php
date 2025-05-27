@@ -1,5 +1,5 @@
 <?php
-require_once("../Classes/Consulta.class.php");
+require_once(__DIR__ . "/../Classes/Consulta.class.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = isset($_POST['id']) ? $_POST['id'] : 0;
