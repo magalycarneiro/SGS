@@ -7,7 +7,7 @@
 </head>
 <body>
     <ul>
-        <li><a href="Prontuario/">pRONTUARIO</a></li>
+        <li><a href="Prontuario/">PRONTUARIO</a></li>
     </ul>
 </body>
 </html>
