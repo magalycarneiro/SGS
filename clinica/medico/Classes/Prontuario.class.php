@@ -1,67 +1,133 @@
 <?php
-require_once(__DIR__ . "/../Classes/Prontuario.class.php");
+require_once(__DIR__ . '/../../Classe/Database.class.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    try {
-        $idPRONTUARIO = $_POST['idPRONTUARIO'] ?? 0;
-        $prescricao = $_POST['prescricao'] ?? "";
-        $observacoes = $_POST['observacoes'] ?? "";
-        $diagnostico = $_POST['diagnostico'] ?? "";
-        $acao = $_POST['acao'] ?? "";
+class Prontuario {
+    private int $id;
+    private string $prescricao;
+    private string $observacoes;
+    private string $diagnostico;
+    private string $mensagemErro;
 
-        $prontuario = new Prontuario($idPRONTUARIO, $prescricao, $observacoes, $diagnostico);
-        $resultado = false;
-
-        if ($acao == 'salvar') {
-            $resultado = ($idPRONTUARIO > 0) ? $prontuario->alterar() : $prontuario->inserir();
-        } elseif ($acao == 'excluir') {
-            $resultado = $prontuario->excluir();
-        }
-
-        if ($resultado) {
-            header("Location: index.php");
-            exit();
-        } else {
-            $erro = $prontuario->getMensagemErro();
-            include('erro.php'); // Crie um arquivo de template para erros
-        }
-    } catch (Exception $e) {
-        $erro = $e->getMessage();
-        include('erro.php');
+    public function __construct($id = 0, $prescricao = '', $observacoes = '', $diagnostico = '') {
+        $this->id = (int)$id;
+        $this->prescricao = $prescricao ?? '';
+        $this->observacoes = $observacoes ?? '';
+        $this->diagnostico = $diagnostico ?? '';
+        $this->mensagemErro = '';
     }
-} else {
-    try {
-        $id = $_GET['id'] ?? 0;
-        $formulario = file_get_contents('form_cad_prontuario.html');
 
-        if ($id > 0) {
-            $resultado = Prontuario::listar(1, $id);
-            if (!empty($resultado)) {
-                $prontuario = $resultado[0];
-                $formulario = str_replace(
-                    ['{idPRONTUARIO}', '{prescricao}', '{observacoes}', '{diagnostico}'],
-                    [
-                        $prontuario->getIdPRONTUARIO(),
-                        htmlspecialchars($prontuario->getPrescricao()),
-                        htmlspecialchars($prontuario->getObservacoes()),
-                        htmlspecialchars($prontuario->getDiagnostico())
-                    ],
-                    $formulario
-                );
-            }
-        } else {
-            $formulario = str_replace(
-                ['{idPRONTUARIO}', '{prescricao}', '{observacoes}', '{diagnostico}'],
-                ['', '', '', ''],
-                $formulario
-            );
+    // Getters
+    public function getIdPRONTUARIO(): int {
+        return $this->id;
+    }
+
+    public function getPrescricao(): string {
+        return $this->prescricao ?? '';
+    }
+
+    public function getObservacoes(): string {
+        return $this->observacoes ?? '';
+    }
+
+    public function getDiagnostico(): string {
+        return $this->diagnostico ?? '';
+    }
+
+    public function getMensagemErro(): string {
+        return $this->mensagemErro;
+    }
+
+    // Setters
+    public function setPrescricao(string $prescricao): void {
+        $this->prescricao = $prescricao;
+    }
+
+    public function setObservacoes(string $observacoes): void {
+        $this->observacoes = $observacoes;
+    }
+
+    public function setDiagnostico(string $diagnostico): void {
+        $this->diagnostico = $diagnostico;
+    }
+
+    public function setIdPRONTUARIO(int $id): void {
+        $this->id = $id;
+    }
+
+    // Inserir no banco
+    public function inserir(): bool {
+        $sql = "INSERT INTO prontuario (prescricao, observacoes, diagnostico) 
+                VALUES (:prescricao, :observacoes, :diagnostico)";
+        
+        $params = [
+            ':prescricao' => $this->getPrescricao(),
+            ':observacoes' => $this->getObservacoes(),
+            ':diagnostico' => $this->getDiagnostico()
+        ];
+
+        return Database::executar($sql, $params) == true;
+    }
+
+    // Alterar registro
+    public function alterar(): bool {
+        $sql = "UPDATE prontuario 
+                   SET prescricao = :prescricao,
+                       observacoes = :observacoes,
+                       diagnostico = :diagnostico 
+                 WHERE idPRONTUARIO = :id";
+        
+        $params = [
+            ':id' => $this->getIdPRONTUARIO(),
+            ':prescricao' => $this->getPrescricao(),
+            ':observacoes' => $this->getObservacoes(),
+            ':diagnostico' => $this->getDiagnostico()
+        ];
+
+        return Database::executar($sql, $params) == true;
+    }
+
+    // Excluir registro
+    public function excluir(): bool {
+        $sql = "DELETE FROM prontuario WHERE idPRONTUARIO = :id";
+        $params = [':id' => $this->getIdPRONTUARIO()];
+        return Database::executar($sql, $params) == true;
+    }
+
+    // Listar prontuários
+    public static function listar(int $tipo = 0, $info = ''): array {
+        $sql = "SELECT * FROM prontuario";
+        $params = [];
+
+        switch ($tipo) {
+            case 1:
+                $sql .= " WHERE idPRONTUARIO = :info";
+                $params[':info'] = $info;
+                break;
+            case 2:
+                $sql .= " WHERE prescricao LIKE :info OR observacoes LIKE :info OR diagnostico LIKE :info";
+                $params[':info'] = '%' . $info . '%';
+                break;
         }
 
-        echo $formulario;
-        include('lista_prontuario.php');
-    } catch (Exception $e) {
-        $erro = $e->getMessage();
-        include('erro.php');
+        $comando = Database::executar($sql, $params);
+        $lista = [];
+
+        while ($registro = $comando->fetch()) {
+            $prontuario = new Prontuario(
+                $registro['idPRONTUARIO'] ?? 0,
+                $registro['prescricao'] ?? '',
+                $registro['observacoes'] ?? '',
+                $registro['diagnostico'] ?? ''
+            );
+            $lista[] = $prontuario;
+        }
+
+        return $lista;
+    }
+
+    // Método para debug ou exibição
+    public function __toString(): string {
+        return "Prontuário: {$this->id} - Prescrição: {$this->prescricao} - Observações: {$this->observacoes} - Diagnóstico: {$this->diagnostico}";
     }
 }
 ?>
