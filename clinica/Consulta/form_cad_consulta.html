@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Consulta Médica</title>
+</head>
+<body>
+    <h1>Agendamento de Consulta Médica</h1>
+    <form action="index.php" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Formulário de Agendamento</legend>
+            <label for="id">Código da Consulta:</label><br>
+            <input type="text" name="id" readonly value={id}><br><br>
+            <label for="paciente">Nome do Paciente:</label><br>
+            <input type="text" name="paciente" value={paciente} required><br><br>
+            <label for="medico">Médico Responsável:</label><br>
+            <input type="text" name="medico" value={medico} required><br><br>
+            <label for="data">Data e Horário:</label><br>
+            <input type="datetime-local" name="data" value={data} required><br><br>
+            <label for="clinica">Clínica/Unidade de Saúde:</label><br>
+            <input type="text" name="clinica" value={clinica} required><br><br>
+            <button type="submit" name="acao" value="salvar">Agendar Consulta</button>
+            <button type="submit" name="acao" value="excluir">Cancelar Consulta</button>
+            <input type="reset" value="Limpar Campos">
+        </fieldset>
+    </form>
+</body>
+</html>

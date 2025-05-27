@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamentos Médicos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+<body>
+    <!-- Filtro -->
+    <form action="lista_consulta.php" method="GET">
+        <fieldset>
+            <legend>Filtrar Consultas</legend>
+            <label for="busca">Buscar:</label>
+            <input type="text" name="busca" placeholder="Digite sua busca...">
+            
+            <label for="tipo">Filtrar por:</label>
+            <select name="tipo">
+                <option value="0">Todos</option>
+                <option value="1">Código</option>
+                <option value="2">Paciente</option>
+                <option value="3">Médico</option>
+            </select>
+            
+            <button type="submit">Buscar</button>
+        </fieldset>
+    </form>
+
+    <!-- Listagem -->
+    <h1>Agendamentos Médicos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Paciente</th>
+                <th>Médico</th>
+                <th>Data/Horário</th>
+                <th>Clínica</th>
+                <th>Exames</th>
+            </tr>
+        </thead>
+        <tbody>
+            {itens}
+        </tbody>
+    </table>
+</body>
+</html>
