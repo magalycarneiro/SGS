@@ -15,11 +15,11 @@ class Atividade{
     }
 
     // função / interface para aterar e ler
-    public function setDescricao($desc){
-        if ($desc == "")
-            throw new Exception("Erro, a descrição deve ser informada!");
+    public function setStatus($status){
+        if ($status == "")
+            throw new Exception("Erro, o status da consulta deve ser informado!");
         else
-            $this->descricao = $desc;
+            $this->status = $status;
     }
     // cada atributo tem um método set para alterar seu valor
     public function setId($id){
@@ -29,43 +29,35 @@ class Atividade{
             $this->id = $id;
     }
 
-    public function setPeso($peso){
-            if ($peso < 0)
-                throw new Exception("Erro, o peso deve ser maior que 0!");
+    public function setDataHora($peso){
+            if ($data_hora == "")
+                throw new Exception("Erro, a data e hora devem ser informadas!");
             else
-                $this->peso = $peso;
-    }
-    // Anexo pode ser em branco por isso o parâmetro é opcional
-    public function setAnexo($anexo = ''){
-        $this->anexo = $anexo;
+                $this->data_hora = $data_hora;
     }
 
     public function getId(): int{
         return $this->id;
     }
-    public function getDescricao(): String{
-        return $this->descricao;
+    public function getStatus(): String{
+        return $this->status;
     }
-    public function getPeso(): String{
-        return $this->peso;
-    }
-    public function getAnexo(): String{
-        return $this->anexo;
+    public function getDataHora(): String{
+        return $this->data_hora;
     }
 
     // método mágico para imprimir uma atividade
     public function __toString():String{  
-        $str = "Atuvidade: $this->id - $this->descricao
-                 - Peso: $this->peso
-                 - Anexo: $this->anexo";        
+        $str = "Consulta: $this->id - $this->status
+                 - Data_hora: $this->peso";        
         return $str;
     }
 
     // insere uma atividade no banco 
     public function inserir():Bool{
         // montar o sql/ query
-        $sql = "INSERT INTO atividade 
-                    (descricao, peso, anexo)
+        $sql = "INSERT INTO consulta 
+                    (status,data_hora)
                     VALUES(:descricao, :peso, :anexo)";
         
         $parametros = array(':descricao'=>$this->getDescricao(),
