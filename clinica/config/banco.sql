@@ -1,71 +1,77 @@
-CREATE DATABASE SGS;
-USE SGS;
+create database sgs;
+use sgs;
 
-CREATE TABLE FUNCIONARIOS (
-    idFUNCIONARIO INT PRIMARY KEY auto_increment,
-    NOME VARCHAR(100),
-    CPF VARCHAR(14) UNIQUE,
-    DATA_NASCIMENTO DATE,
-    TELEFONE VARCHAR(45),
-    EMAIL VARCHAR(100) UNIQUE,
-    CARGO ENUM('Médico', 'Secretário'),
-    idMEDICO INT UNIQUE,
-    idSECRETARIA INT UNIQUE
+create table funcionarios (
+    idfuncionario int primary key auto_increment,
+    nome varchar(100),
+    cpf varchar(14) unique,
+    data_nascimento date,
+    telefone varchar(45),
+    email varchar(100) unique,
+    cargo enum('Médico', 'Secretário'),
+    idmedico int unique,
+    idsecretaria int unique
 );
 
-CREATE TABLE SECRETARIA (
-    idSECRETARIA INT PRIMARY KEY auto_increment,
-    NOME VARCHAR(100),
-    CPF VARCHAR(14) UNIQUE,
-    DATA_NASCIMENTO DATE,
-    TELEFONE VARCHAR(45),
-    EMAIL VARCHAR(100) UNIQUE
+create table secretaria (
+    idsecretaria int primary key auto_increment,
+    nome varchar(100),
+    cpf varchar(14) unique,
+    data_nascimento date,
+    telefone varchar(45),
+    email varchar(100) unique
 );
 
-CREATE TABLE MEDICO (
-    idMEDICO INT PRIMARY KEY auto_increment,
-    NOME VARCHAR(100),
-    CRM VARCHAR(12) UNIQUE,
-    ESPECIALIDADE VARCHAR(45),
-    idFUNCIONARIO INT UNIQUE,
-    FOREIGN KEY (idFUNCIONARIO) REFERENCES FUNCIONARIOS(idFUNCIONARIO)
+create table medico (
+    idmedico int primary key auto_increment,
+    nome varchar(100),
+    crm varchar(12) unique,
+    especialidade varchar(45),
+    idfuncionario int unique,
+    foreign key (idfuncionario) references funcionarios(idfuncionario)
 );
 
-CREATE TABLE PACIENTE (
-    idPACIENTE INT PRIMARY KEY auto_increment,
-    NOME VARCHAR(100),
-    CPF VARCHAR(14) UNIQUE,
-    DATA_NASCIMENTO DATE,
-    TELEFONE VARCHAR(45),
-    EMAIL VARCHAR(100) UNIQUE,
-    ENDERECO VARCHAR(100)
+create table paciente (
+    idpaciente int primary key auto_increment,
+    nome varchar(100),
+    cpf varchar(14) unique,
+    data_nascimento date,
+    telefone varchar(45),
+    email varchar(100) unique,
+    endereco varchar(100)
 );
 
-CREATE TABLE PRONTUARIO (
-    idPRONTUARIO INT PRIMARY KEY auto_increment,
-    PRESCRICAO VARCHAR(200),
-    OBSERVACOES VARCHAR(200),
-    DIAGNOSTICO VARCHAR(100)
+create table prontuario (
+    idprontuario int primary key auto_increment,
+    nomepaciente varchar(100),
+    prescricao varchar(200),
+    observacoes varchar(200),
+    diagnostico varchar(100),
+	atestado varchar(100),
+    encaminhamentos varchar(200),
+    antecedentes varchar(200),
+    solicitacaoexames varchar(300),
+    exames varchar(200)
 );
 
-CREATE TABLE CONSULTA (
-    idCONSULTA INT PRIMARY KEY auto_increment,
-    DATA_HORA DATETIME,
-    STATUS VARCHAR(45),
-    idMEDICO INT,
-    idPRONTUARIO INT,
-    idSECRETARIA INT,
-    idPACIENTE INT,
-    FOREIGN KEY (idMEDICO) REFERENCES MEDICO(idMEDICO),
-    FOREIGN KEY (idPRONTUARIO) REFERENCES PRONTUARIO(idPRONTUARIO),
-    FOREIGN KEY (idSECRETARIA) REFERENCES SECRETARIA(idSECRETARIA),
-    FOREIGN KEY (idPACIENTE) REFERENCES PACIENTE(idPACIENTE)
+create table consulta (
+    idconsulta int primary key auto_increment,
+    data_hora datetime,
+    status varchar(45),
+    idmedico int,
+    idprontuario int,
+    idsecretaria int,
+    idpaciente int,
+    foreign key (idmedico) references medico(idmedico),
+    foreign key (idprontuario) references prontuario(idprontuario),
+    foreign key (idsecretaria) references secretaria(idsecretaria),
+    foreign key (idpaciente) references paciente(idpaciente)
 );
 
-CREATE TABLE PACIENTEMEDICO (
-    idMEDICO INT,
-    idPACIENTE INT,
-    PRIMARY KEY (idMEDICO, idPACIENTE),
-    FOREIGN KEY (idMEDICO) REFERENCES MEDICO(idMEDICO),
-    FOREIGN KEY (idPACIENTE) REFERENCES PACIENTE(idPACIENTE)
+create table pacientemedico (
+    idmedico int,
+    idpaciente int,
+    primary key (idmedico, idpaciente),
+    foreign key (idmedico) references medico(idmedico),
+    foreign key (idpaciente) references paciente(idpaciente)
 );
