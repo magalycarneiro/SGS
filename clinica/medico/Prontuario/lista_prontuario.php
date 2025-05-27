@@ -12,8 +12,8 @@ require_once(__DIR__ . '/../Classes/Prontuario.class.php');
         $item = file_get_contents('itens_listagem_prontuario.html');
         $item = str_replace('{idPRONTUARIO}', $prontuario->getIdPRONTUARIO(), $item);
         $item = str_replace('{prescricao}', htmlspecialchars($prontuario->getPrescricao()), $item);
-$item = str_replace('{observacoes}', htmlspecialchars($prontuario->getObservacoes()), $item);
-$item = str_replace('{diagnostico}', htmlspecialchars($prontuario->getDiagnostico()), $item);
+        $item = str_replace('{observacoes}', htmlspecialchars($prontuario->getObservacoes()), $item);
+        $item = str_replace('{diagnostico}', htmlspecialchars($prontuario->getDiagnostico()), $item);
         $itens .= $item;
     }
     
