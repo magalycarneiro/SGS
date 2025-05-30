@@ -3,13 +3,33 @@ require_once(__DIR__ . "/../Classes/Prontuario.class.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
+        // Coleta todos os campos do formulário
         $idPRONTUARIO = $_POST['idPRONTUARIO'] ?? 0;
+        $nomepaciente = $_POST['nomepaciente'] ?? "";
         $prescricao = $_POST['prescricao'] ?? "";
         $observacoes = $_POST['observacoes'] ?? "";
         $diagnostico = $_POST['diagnostico'] ?? "";
+        $atestado = $_POST['atestado'] ?? "";
+        $encaminhamento = $_POST['encaminhamento'] ?? "";
+        $antecedentes = $_POST['antecedentes'] ?? "";
+        $solicitacaoexames = $_POST['solicitacaoexames'] ?? "";
+        $exames = $_POST['exames'] ?? "";
         $acao = $_POST['acao'] ?? "";
 
-        $prontuario = new Prontuario($idPRONTUARIO, $prescricao, $observacoes, $diagnostico);
+        // Cria objeto com todos os parâmetros
+        $prontuario = new Prontuario(
+            $idPRONTUARIO,
+            $nomepaciente,
+            $prescricao,
+            $observacoes,
+            $diagnostico,
+            $atestado,
+            $encaminhamento,
+            $antecedentes,
+            $solicitacaoexames,
+            $exames
+        );
+
         $resultado = false;
 
         if ($acao == 'salvar') {
@@ -23,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         } else {
             $erro = $prontuario->getMensagemErro();
-            include('erro.php'); // Crie um arquivo de template para erros
+            include('erro.php');
         }
     } catch (Exception $e) {
         $erro = $e->getMessage();
@@ -39,20 +59,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!empty($resultado)) {
                 $prontuario = $resultado[0];
                 $formulario = str_replace(
-                    ['{idPRONTUARIO}', '{prescricao}', '{observacoes}', '{diagnostico}'],
+                    [
+                        '{idPRONTUARIO}', 
+                        '{nomepaciente}',
+                        '{prescricao}', 
+                        '{observacoes}', 
+                        '{diagnostico}',
+                        '{atestado}',
+                        '{encaminhamento}',
+                        '{antecedentes}',
+                        '{solicitacaoexames}',
+                        '{exames}'
+                    ],
                     [
                         $prontuario->getIdPRONTUARIO(),
+                        htmlspecialchars($prontuario->getNomepaciente()),
                         htmlspecialchars($prontuario->getPrescricao()),
                         htmlspecialchars($prontuario->getObservacoes()),
-                        htmlspecialchars($prontuario->getDiagnostico())
+                        htmlspecialchars($prontuario->getDiagnostico()),
+                        htmlspecialchars($prontuario->getAtestado()),
+                        htmlspecialchars($prontuario->getEncaminhamento()),
+                        htmlspecialchars($prontuario->getAntecedentes()),
+                        htmlspecialchars($prontuario->getSolicitacaoexames()),
+                        htmlspecialchars($prontuario->getExames())
                     ],
                     $formulario
                 );
             }
         } else {
             $formulario = str_replace(
-                ['{idPRONTUARIO}', '{prescricao}', '{observacoes}', '{diagnostico}'],
-                ['', '', '', ''],
+                [
+                    '{idPRONTUARIO}',
+                    '{nomepaciente}',
+                    '{prescricao}',
+                    '{observacoes}',
+                    '{diagnostico}',
+                    '{atestado}',
+                    '{encaminhamento}',
+                    '{antecedentes}',
+                    '{solicitacaoexames}',
+                    '{exames}'
+                ],
+                ['', '', '', '', '', '', '', '', '', ''],
                 $formulario
             );
         }

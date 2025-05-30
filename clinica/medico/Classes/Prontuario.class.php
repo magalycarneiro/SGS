@@ -15,7 +15,7 @@ class Prontuario {
     private string $mensagemErro;
 
     public function __construct($id = 0, $nomepaciente = '', $prescricao = '', 
-    $observacoes = '', $diagnostico = '', $atestado = '', $encaminhamentos = '',
+    $observacoes = '', $diagnostico = '', $atestado = '', $encaminhamento = '',
     $antecedentes = '', $solicitacaoexames = '', $exames = '') {
         $this->id = (int)$id;
         $this->prescricao = $prescricao ?? '';
@@ -23,7 +23,7 @@ class Prontuario {
         $this->observacoes = $observacoes ?? '';
         $this->diagnostico = $diagnostico ?? '';
         $this->atestado = $atestado ?? '';
-        $this->encaminhamentos = $encaminhamentos ?? '';
+        $this->encaminhamento = $encaminhamento ?? '';
         $this->antecedentes = $antecedentes ?? '';
         $this->solicitacaoexames = $solicitacaoexames ?? '';
         $this->exames = $exames ?? '';
@@ -76,7 +76,7 @@ class Prontuario {
     }
 
     // Setters
-     public function setNomepaciente(string $nomepaciente): void {
+    public function setNomepaciente(string $nomepaciente): void {
         $this->nomepaciente = $nomepaciente;
     }
 
@@ -92,23 +92,23 @@ class Prontuario {
         $this->diagnostico = $diagnostico;
     }
 
-     public function setAtestado(string $atestado): void {
+    public function setAtestado(string $atestado): void {
         $this->atestado = $atestado;
     }
 
-     public function setEncaminhamento(string $encaminhamento): void {
+    public function setEncaminhamento(string $encaminhamento): void {
         $this->encaminhamento = $encaminhamento;
     }
 
-     public function setAntecedentes(string $antecedentes): void {
+    public function setAntecedentes(string $antecedentes): void {
         $this->antecedentes = $antecedentes;
     }
 
-     public function setSolicitacaoexames(string $solicitacaoexames): void {
+    public function setSolicitacaoexames(string $solicitacaoexames): void {
         $this->solicitacaoexames = $solicitacaoexames;
     }
 
-     public function setExames(string $exames): void {
+    public function setExames(string $exames): void {
         $this->exames = $exames;
     }
 
@@ -118,62 +118,99 @@ class Prontuario {
 
     // Inserir no banco
     public function inserir(): bool {
-        $sql = "INSERT INTO prontuario (nomepaciente, prescricao, observacoes, diagnostico, atestado,
-        encaminhamento, antecedentes, solicitacaoexames, exames) 
-                VALUES (:prescricao, :observacoes, :diagnostico, :atestado, :encaminhamento, :antecedentes,
-                :solicitacaoexames, :exames)";
-        
-        $params = [
-            ':nomepaciente' => $this->getNomepaciente(),
-            ':prescricao' => $this->getPrescricao(),
-            ':observacoes' => $this->getObservacoes(),
-            ':diagnostico' => $this->getDiagnostico(),
-            ':atestado' => $this->getAtestado(),
-            ':encaminhamento' => $this->getEncaminhamento(),
-            ':antecedentes' => $this->getAntecedentes(),
-            ':solicitacaoexames' => $this->getSolicitacaoexames(),
-            ':exames' => $this->getExames()
-        ];
+    $sql = "INSERT INTO prontuario 
+            (nomepaciente, prescricao, observacoes, diagnostico, atestado,
+             encaminhamento, antecedentes, solicitacaoexames, exames) 
+            VALUES 
+            (:nomepaciente, :prescricao, :observacoes, :diagnostico, :atestado, 
+             :encaminhamento, :antecedentes, :solicitacaoexames, :exames)";
+    
+    $params = [
+        ':nomepaciente' => $this->getNomepaciente(),
+        ':prescricao' => $this->getPrescricao(),
+        ':observacoes' => $this->getObservacoes(),
+        ':diagnostico' => $this->getDiagnostico() ?: null,
+        ':atestado' => $this->getAtestado() ?: null,
+        ':encaminhamento' => $this->getEncaminhamento() ?: null,
+        ':antecedentes' => $this->getAntecedentes() ?: null,
+        ':solicitacaoexames' => $this->getSolicitacaoexames() ?: null,
+        ':exames' => $this->getExames() ?: null
+    ];
 
-        return Database::executar($sql, $params) == true;
+    error_log("Tentativa de inserção: " . print_r($params, true));
+
+    try {
+        $stmt = Database::executar($sql, $params);
+        
+        if ($stmt !== false && $stmt->rowCount() > 0) {
+            $this->id = Database::getLastInsertId();
+            error_log("Inserção bem-sucedida. ID: " . $this->id);
+            return true;
+        }
+        
+        error_log("Nenhuma linha afetada na inserção");
+        $this->mensagemErro = "Nenhum registro foi inserido";
+        return false;
+        
+    } catch (Exception $e) {
+        $this->mensagemErro = $e->getMessage();
+        error_log("Erro na inserção: " . $e->getMessage());
+        return false;
     }
+}
 
     // Alterar registro
     public function alterar(): bool {
-        $sql = "UPDATE prontuario 
-                   SET nomepaciente = :nomepaciente,
-                       prescricao = :prescricao,
-                       observacoes = :observacoes,
-                       diagnostico = :diagnostico,
-                       atestado = :atestado,
-                       encaminhamento = :encaminhamento,
-                       antecedentes = :antecedentes,
-                       solicitacaoexames = :solicitacaoexames,
-                       exames = :exames
-                 WHERE idprontuario = :id";
-        
-       $params = [
-    ':id' => $this->getIdprontuario(),
-    ':nomepaciente' => $this->getNomePaciente(),
-    ':prescricao' => $this->getPrescricao(),
-    ':observacoes' => $this->getObservacoes(),
-    ':diagnostico' => $this->getDiagnostico(),
-    ':atestado' => $this->getAtestado(),
-    ':encaminhamento' => $this->getEncaminhamento(),
-    ':antecedentes' => $this->getAntecedentes(),
-    ':solicitacaoexames' => $this->getSolicitacaoExames(),
-    ':exames' => $this->getExames()
-];
+    $sql = "UPDATE prontuario 
+               SET nomepaciente = :nomepaciente,
+                   prescricao = :prescricao,
+                   observacoes = :observacoes,
+                   diagnostico = :diagnostico,
+                   atestado = :atestado,
+                   encaminhamento = :encaminhamento,
+                   antecedentes = :antecedentes,
+                   solicitacaoexames = :solicitacaoexames,
+                   exames = :exames
+             WHERE idprontuario = :id";
+    
+    $params = [
+        ':id' => $this->getIdPRONTUARIO(),
+        ':nomepaciente' => $this->getNomepaciente(),
+        ':prescricao' => $this->getPrescricao(),
+        ':observacoes' => $this->getObservacoes(),
+        ':diagnostico' => $this->getDiagnostico(),
+        ':atestado' => $this->getAtestado(),
+        ':encaminhamento' => $this->getEncaminhamento(),
+        ':antecedentes' => $this->getAntecedentes(),
+        ':solicitacaoexames' => $this->getSolicitacaoexames(),
+        ':exames' => $this->getExames()
+    ];
 
-        return Database::executar($sql, $params) == true;
+    try {
+        $stmt = Database::executar($sql, $params);
+        return $stmt !== false && $stmt->rowCount() > 0;
+    } catch (PDOException $e) {
+        $this->mensagemErro = $e->getMessage();
+        return false;
     }
+}
+
+
 
     // Excluir registro
+    
     public function excluir(): bool {
-        $sql = "DELETE FROM prontuario WHERE idprontuario = :id";
-        $params = [':id' => $this->getIdprontuario()];
-        return Database::executar($sql, $params) == true;
+    $sql = "DELETE FROM prontuario WHERE idprontuario = :id";
+    $params = [':id' => $this->getIdPRONTUARIO()];
+    
+    try {
+        $stmt = Database::executar($sql, $params);
+        return $stmt !== false && $stmt->rowCount() > 0;
+    } catch (PDOException $e) {
+        $this->mensagemErro = $e->getMessage();
+        return false;
     }
+}
 
     // Listar prontuários
     public static function listar(int $tipo = 0, $info = ''): array {
@@ -187,8 +224,8 @@ class Prontuario {
                 break;
             case 2:
                 $sql .= " WHERE prescricao LIKE :info OR observacoes LIKE :info OR diagnostico LIKE :info OR 
-                atestado LIKE :info OR encaminhamento LIKE :info OR antecedente LIKE :info
-                OR solicitacaoexame LIKE :info OR exames LIKE :info OR nomepaciente LIKE :info";
+                atestado LIKE :info OR encaminhamento LIKE :info OR antecedentes LIKE :info
+                OR solicitacaoexames LIKE :info OR exames LIKE :info OR nomepaciente LIKE :info";
                 $params[':info'] = '%' . $info . '%';
                 break;
         }
@@ -197,22 +234,18 @@ class Prontuario {
         $lista = [];
 
         while ($registro = $comando->fetch()) {
-            $prontuario = new Prontuario((
-                $registro['idprontuario'] ,
-
-                $registro['nomepaciente'] ,
-                $registro['prescricao'] ,
+            $prontuario = new Prontuario(
+                $registro['idprontuario'],
+                $registro['nomepaciente'],
+                $registro['prescricao'],
                 $registro['observacoes'],
                 $registro['diagnostico'],
-                $registro['encaminhamentos'] ,
-                $registro['antecedentes'] ,
-                $registro['atestado'] ,
-                $registro['solicitacaoexame'] ,
-                $registro['exames'] );
-
-                $registro['prescricao'] ,
-                $registro['observacoes'],
-                $registro['diagnostico'] );
+                $registro['atestado'],
+                $registro['encaminhamento'],
+                $registro['antecedentes'],
+                $registro['solicitacaoexames'],
+                $registro['exames']
+            );
 
             $lista[] = $prontuario;
         }
@@ -223,7 +256,6 @@ class Prontuario {
     // Método para debug ou exibição
     public function __toString(): string {
         return "Prontuário: {$this->id} - Nome: {$this->nomepaciente} - Prescrição: {$this->prescricao} - Observações: {$this->observacoes} - Diagnóstico: {$this->diagnostico} - Atestado: {$this->atestado} - Encaminhamento: {$this->encaminhamento} - Antecedentes: {$this->antecedentes} - Solicitação de Exames: {$this->solicitacaoexames} - Exames: {$this->exames}";
-
     }
 }
 ?>
