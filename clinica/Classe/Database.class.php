@@ -51,6 +51,8 @@ class Database {
                      " - Query: " . $sql . 
                      " - Parâmetros: " . print_r($parametros, true));
             throw new Exception("Erro ao processar a operação no banco de dados: " . $e->getMessage());
+            error_log("SQL: " . $sql);
+error_log("Params: " . print_r($parametros, true));
         }
     }
 

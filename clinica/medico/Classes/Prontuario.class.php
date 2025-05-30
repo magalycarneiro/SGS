@@ -160,30 +160,30 @@ class Prontuario {
 }
 
     // Alterar registro
-    public function alterar(): bool {
-    $sql = "UPDATE prontuario 
-               SET nomepaciente = :nomepaciente,
-                   prescricao = :prescricao,
-                   observacoes = :observacoes,
-                   diagnostico = :diagnostico,
-                   atestado = :atestado,
-                   encaminhamento = :encaminhamento,
-                   antecedentes = :antecedentes,
-                   solicitacaoexames = :solicitacaoexames,
-                   exames = :exames
-             WHERE idprontuario = :id";
+   public function alterar(): bool {
+    $sql = "UPDATE prontuario SET 
+               nomepaciente = :nomepaciente,
+               prescricao = :prescricao,
+               observacoes = :observacoes,
+               diagnostico = :diagnostico,
+               atestado = :atestado,
+               encaminhamento = :encaminhamento,
+               antecedentes = :antecedentes,
+               solicitacaoexames = :solicitacaoexames,
+               exames = :exames
+            WHERE idprontuario = :id";
     
     $params = [
-        ':id' => $this->getIdPRONTUARIO(),
-        ':nomepaciente' => $this->getNomepaciente(),
-        ':prescricao' => $this->getPrescricao(),
-        ':observacoes' => $this->getObservacoes(),
-        ':diagnostico' => $this->getDiagnostico(),
-        ':atestado' => $this->getAtestado(),
-        ':encaminhamento' => $this->getEncaminhamento(),
-        ':antecedentes' => $this->getAntecedentes(),
-        ':solicitacaoexames' => $this->getSolicitacaoexames(),
-        ':exames' => $this->getExames()
+        ':id' => $this->id,
+        ':nomepaciente' => $this->nomepaciente,
+        ':prescricao' => $this->prescricao,
+        ':observacoes' => $this->observacoes,
+        ':diagnostico' => $this->diagnostico,
+        ':atestado' => $this->atestado,
+        ':encaminhamento' => $this->encaminhamento,
+        ':antecedentes' => $this->antecedentes,
+        ':solicitacaoexames' => $this->solicitacaoexames,
+        ':exames' => $this->exames
     ];
 
     try {
@@ -213,36 +213,31 @@ class Prontuario {
 }
 
     // Listar prontuários
-   public static function listar(int $tipo = 0, $info = ''): array {
+ public static function listar(int $tipo = 0, $info = ''): array {
     $sql = "SELECT * FROM prontuario";
     $params = [];
 
-    switch ($tipo) {
-        case 1: // Busca por ID específico
+    try {
+        // Validação dos parâmetros
+        if ($tipo === 1 && !is_numeric($info)) {
+            throw new InvalidArgumentException("Para busca por ID, o termo deve ser numérico");
+        }
+
+        // Construção da consulta
+        if ($tipo === 1) {
+            // Busca por ID
             $sql .= " WHERE idPRONTUARIO = :id";
             $params[':id'] = (int)$info;
-            break;
-            
-        case 2: // Busca textual geral
-            $sql .= " WHERE nomepaciente LIKE :termo 
-                     OR prescricao LIKE :termo 
-                     OR observacoes LIKE :termo
-                     OR diagnostico LIKE :termo
-                     OR atestado LIKE :termo
-                     OR encaminhamento LIKE :termo
-                     OR antecedentes LIKE :termo
-                     OR solicitacaoexames LIKE :termo
-                     OR exames LIKE :termo";
-            $params[':termo'] = '%' . $info . '%';
-            break;
-            
-        // Caso 0 ou default: retorna todos os registros
-    }
+        } elseif ($tipo === 2 && !empty(trim($info))) {
+            // Busca textual simplificada - usando um único parâmetro
+            $sql .= " WHERE nomepaciente LIKE :termo";
+            $params[':termo'] = '%' . trim($info) . '%';
+        }
 
-    try {
-        error_log("Executando consulta: " . $sql);
-        error_log("Parâmetros: " . print_r($params, true));
-        
+        // Debug (remova em produção)
+        error_log("SQL: " . $sql);
+        error_log("Params: " . print_r($params, true));
+
         $comando = Database::executar($sql, $params);
         $lista = [];
 
@@ -263,6 +258,7 @@ class Prontuario {
         }
 
         return $lista;
+
     } catch (PDOException $e) {
         error_log("Erro PDO: " . $e->getMessage());
         throw new Exception("Erro ao buscar prontuários: " . $e->getMessage());

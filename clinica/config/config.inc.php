@@ -1,11 +1,11 @@
 <?php
-
-define('USUARIO', 'root'); /// usuario de conexão com o banco
-define('SENHA', ''); // senha de conexão com o banco
-define('HOST', 'localhost'); // ip do servidor do banco
-define('PORT', '3306'); // porta do mysql
-define('DB', 'SGS'); // nome do banco
-define('DSN', "mysql:host=".HOST.";port=".PORT.";dbname=".DB.";charset=UTF8");
-
-
-define('PATH_UPLOAD','../');
+// Adicione esta verificação no início do arquivo
+if (!defined('USUARIO')) {
+    define('USUARIO', 'root');
+    define('SENHA', '');
+    define('HOST', 'localhost');
+    define('PORT', '3306');
+    define('DB', 'sgs');
+    define('DSN', 'mysql:host='.HOST.';port='.PORT.';dbname='.DB);
+    define('PATH_UPLOAD', __DIR__.'/uploads/');
+}
