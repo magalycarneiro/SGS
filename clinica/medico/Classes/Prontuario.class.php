@@ -213,46 +213,61 @@ class Prontuario {
 }
 
     // Listar prontuários
-    public static function listar(int $tipo = 0, $info = ''): array {
-        $sql = "SELECT * FROM prontuario";
-        $params = [];
+   public static function listar(int $tipo = 0, $info = ''): array {
+    $sql = "SELECT * FROM prontuario";
+    $params = [];
 
-        switch ($tipo) {
-            case 1:
-                $sql .= " WHERE idPRONTUARIO = :info";
-                $params[':info'] = $info;
-                break;
-            case 2:
-                $sql .= " WHERE prescricao LIKE :info OR observacoes LIKE :info OR diagnostico LIKE :info OR 
-                atestado LIKE :info OR encaminhamento LIKE :info OR antecedentes LIKE :info
-                OR solicitacaoexames LIKE :info OR exames LIKE :info OR nomepaciente LIKE :info";
-                $params[':info'] = '%' . $info . '%';
-                break;
-        }
+    switch ($tipo) {
+        case 1: // Busca por ID específico
+            $sql .= " WHERE idPRONTUARIO = :id";
+            $params[':id'] = (int)$info;
+            break;
+            
+        case 2: // Busca textual geral
+            $sql .= " WHERE nomepaciente LIKE :termo 
+                     OR prescricao LIKE :termo 
+                     OR observacoes LIKE :termo
+                     OR diagnostico LIKE :termo
+                     OR atestado LIKE :termo
+                     OR encaminhamento LIKE :termo
+                     OR antecedentes LIKE :termo
+                     OR solicitacaoexames LIKE :termo
+                     OR exames LIKE :termo";
+            $params[':termo'] = '%' . $info . '%';
+            break;
+            
+        // Caso 0 ou default: retorna todos os registros
+    }
 
+    try {
+        error_log("Executando consulta: " . $sql);
+        error_log("Parâmetros: " . print_r($params, true));
+        
         $comando = Database::executar($sql, $params);
         $lista = [];
 
-        while ($registro = $comando->fetch()) {
+        while ($registro = $comando->fetch(PDO::FETCH_ASSOC)) {
             $prontuario = new Prontuario(
-                $registro['idprontuario'],
-                $registro['nomepaciente'],
-                $registro['prescricao'],
-                $registro['observacoes'],
-                $registro['diagnostico'],
-                $registro['atestado'],
-                $registro['encaminhamento'],
-                $registro['antecedentes'],
-                $registro['solicitacaoexames'],
-                $registro['exames']
+                $registro['idprontuario'] ?? 0,
+                $registro['nomepaciente'] ?? '',
+                $registro['prescricao'] ?? '',
+                $registro['observacoes'] ?? '',
+                $registro['diagnostico'] ?? '',
+                $registro['atestado'] ?? '',
+                $registro['encaminhamento'] ?? '',
+                $registro['antecedentes'] ?? '',
+                $registro['solicitacaoexames'] ?? '',
+                $registro['exames'] ?? ''
             );
-
             $lista[] = $prontuario;
         }
 
         return $lista;
+    } catch (PDOException $e) {
+        error_log("Erro PDO: " . $e->getMessage());
+        throw new Exception("Erro ao buscar prontuários: " . $e->getMessage());
     }
-
+}
     // Método para debug ou exibição
     public function __toString(): string {
         return "Prontuário: {$this->id} - Nome: {$this->nomepaciente} - Prescrição: {$this->prescricao} - Observações: {$this->observacoes} - Diagnóstico: {$this->diagnostico} - Atestado: {$this->atestado} - Encaminhamento: {$this->encaminhamento} - Antecedentes: {$this->antecedentes} - Solicitação de Exames: {$this->solicitacaoexames} - Exames: {$this->exames}";
