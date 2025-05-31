@@ -177,12 +177,6 @@
             <p>Adicione novos pacientes à clínica</p>
         </div>
 
-        <div class="card" onclick="location.href='../medico/Prontuario/index.php'">
-            <i class="fas fa-folder-open"></i>
-            <h2>Prontuários</h2>
-            <p>Consultar prontuários médicos</p>
-        </div>
-
         <div class="card" onclick="location.href='#'">
             <i class="fas fa-phone-volume"></i>
             <h2>Atendimentos</h2>
