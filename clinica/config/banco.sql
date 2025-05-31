@@ -48,7 +48,7 @@ create table prontuario (
     observacoes varchar(200),
     diagnostico varchar(100),
 	atestado varchar(100),
-    encaminhamentos varchar(200),
+    encaminhamento varchar(200),
     antecedentes varchar(200),
     solicitacaoexames varchar(300),
     exames varchar(200)
