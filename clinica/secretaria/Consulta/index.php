@@ -1,16 +1,15 @@
-<?php
+<?php 
 require_once(__DIR__ . "/../Classes/Consulta.class.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idconsulta = isset($_POST['idconsulta']) ? $_POST['idconsulta'] : 0;
     $status = isset($_POST['status']) ? $_POST['status'] : "";
-    $paciente = isset($_POST['paciente']) ? $_POST['paciente'] : "";
-    $medico = isset($_POST['medico']) ? $_POST['medico'] : "";
+    $idpaciente = isset($_POST['idpaciente']) ? $_POST['idpaciente'] : "";
+    $idmedico = isset($_POST['idmedico']) ? $_POST['idmedico'] : "";
     $data_hora = isset($_POST['data_hora']) ? $_POST['data_hora'] : "";
-    $clinica = isset($_POST['clinica']) ? $_POST['clinica'] : "";
     $acao = isset($_POST['acao']) ? $_POST['acao'] : "";
     
-    $consulta = new Consulta($idconsulta, $status, $paciente, $medico, $data_hora, $clinica);
+    $consulta = new Consulta($idconsulta, $status, $idpaciente, $idmedico, $data_hora);
     
     if ($acao == 'salvar') {
         if ($idconsulta > 0) {
@@ -35,22 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if ($resultado) {
         $consulta = $resultado[0];
-        $formulario = str_replace('{idconsulta}', $consulta->getIdconsulta(), $formulario);
+        $formulario = str_replace('{idconsulta}', $consulta->getConsulta(), $formulario);
         $formulario = str_replace('{status}', $status->getStatus(), $formulario);
-        $formulario = str_replace('{paciente}', $consulta->getPaciente(), $formulario);
-        $formulario = str_replace('{medico}', $consulta->getMedico(), $formulario);
+        $formulario = str_replace('{idpaciente}', $consulta->getPaciente(), $formulario);
+        $formulario = str_replace('{idmedico}', $consulta->getMedico(), $formulario);
         $formulario = str_replace('{data_hora}', $consulta->getDataHora(), $formulario);  
-        $formulario = str_replace('{clinica}', $consulta->getClinica(), $formulario);
     } else {
         $formulario = str_replace('{idconsulta}', 0, $formulario);
         $formulario = str_replace('{status}', '',$formulario);
-        $formulario = str_replace('{paciente}', '', $formulario);
-        $formulario = str_replace('{medico}', '', $formulario);
+        $formulario = str_replace('{idpaciente}', '', $formulario);
+        $formulario = str_replace('{idmedico}', '', $formulario);
         $formulario = str_replace('{data_hora}', '', $formulario);
-        $formulario = str_replace('{clinica}', '', $formulario);
     }
     
     print($formulario); 
     include_once('lista_consulta.php');
-}
+} 
 ?>

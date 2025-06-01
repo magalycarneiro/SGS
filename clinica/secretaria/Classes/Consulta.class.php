@@ -1,4 +1,4 @@
-<?php
+<?php 
 require_once(__DIR__ . '/../../Classe/Database.class.php');
 
 
@@ -6,29 +6,25 @@ class Consulta{
     private int $idconsulta;
     private $status;
     private $data_hora;
-    private $medico;
-    private $paciente;
-    private $clinica;
+    private $idmedico;
+    private $idpaciente;
 
-    // construtor da classe
-    public function __construct($idconsulta,$status,$data_hora,$medico,$paciente,$clinica){
+    public function __construct($idconsulta,$status,$data_hora,$idmedico,$idpaciente){
         $this->idconsulta = $idconsulta;
         $this->status = $status;
         $this->data_hora = $data_hora;
-        $this->medico = $medico;
-        $this->paciente = $paciente;
-        $this->clinica = $clinica;
+        $this->idmedico = $idmedico;
+        $this->idpaciente = $idpaciente;
     }
 
-    // função / interface para aterar e ler
     public function setStatus($status){
         if ($status == "")
             throw new Exception("Erro, o status da consulta deve ser informado!");
         else
             $this->status = $status;
     }
-    // cada atributo tem um método set para alterar seu valor
-    public function setidconsulta($idconsulta){
+
+    public function setConsulta($idconsulta){
         if ($idconsulta < 0)
             throw new Exception("Erro, a idconsulta deve ser maior que 0!");
         else
@@ -36,34 +32,27 @@ class Consulta{
     }
 
     public function setDataHora($data_hora){
-            if ($data_hora == "")
+        if ($data_hora == "")
                 throw new Exception("Erro, a data e hora devem ser informadas!");
-            else
+        else
                 $this->data_hora = $data_hora;
     }
 
-    public function setMedico($medico){
-        if ($medico == "")
+    public function setMedico($idmedico){
+        if ($idmedico == "")
             throw new Exception("Erro, o médico deve ser informado!");
         else
-            $this->medico = $medico;
+            $this->medico = $idmedico;
     }
 
-    public function setPaciente($paciente){
-        if ($paciente == "")
+    public function setPaciente($idpaciente){
+        if ($idpaciente == "")
             throw new Exception("Erro, o paciente deve ser informado!");
         else
-            $this->paciente = $paciente;
+            $this->paciente = $idpaciente;
     }
 
-    public function setClinica($clinica){
-        if ($clinica == "")
-            throw new Exception("Erro, a clínica deve ser informada!");
-        else
-            $this->clinica = $clinica;
-    }
-
-    public function getidconsulta(): int{
+    public function getConsulta(): int{
         return $this->idconsulta;
     }
     public function getStatus(): String{
@@ -73,37 +62,30 @@ class Consulta{
         return $this->data_hora;
     }
     public function getMedico(): String{
-        return $this->medico;
+        return $this->idmedico;
     }
     public function getPaciente(): String{
-        return $this->paciente;
+        return $this->idpaciente;
     }
-    public function getClinica(): String{
-        return $this->clinica;
-    }
-
-    // método mágico para imprimir uma consulta
+    
     public function __toString():String{  
         $str = "Consulta: $this->idconsulta - $this->status
-                 - Data_hora: $this->peso,
-                 - Medico: $this->medico,
-                 - Paciente: $this->paciente,
-                 - Clinica: $this->clinica";        
+                 - Data_hora: $this->data_hora,
+                 - Medico: $this->idmedico,
+                 - Paciente: $this->idpaciente";        
         return $str;
     }
 
-    // insere uma consulta no banco 
     public function inserir():Bool{
         // montar o sql/ query
         $sql = "INSERT INTO consulta 
-                    (status,data_hora, medico, paciente, clinica)
-                    VALUES(:status, :data_hora, :medico, :paciente, :clinica)";
+                    (status,data_hora, idmedico, idpaciente)
+                    VALUES(:status, :data_hora, :idmedico, :idpaciente)";
         
         $parametros = array(':status'=>$this->getStatus(),
                             ':data_hora'=>$this->getDataHora(),
                             ':medico'=>$this->getMedico(),
-                            ':paciente'=>$this->getPaciente(),
-                            ':clinica'=>$this->getClinica());
+                            ':paciente'=>$this->getPaciente());
         
         return Database::executar($sql, $parametros) == true;
     }
@@ -112,8 +94,8 @@ class Consulta{
         $sql = "SELECT * FROM consulta";
         switch ($tipo){
             case 0: break;
-            case 1: $sql .= " WHERE idconsulta = :info ORDER BY idconsulta"; break; // filtro por idconsulta
-            case 2: $sql .= " WHERE status like :info ORDER BY status"; $info = '%'.$info.'%'; break; // filtro por descrição
+            case 1: $sql .= " WHERE idconsulta = :info ORDER BY idconsulta"; break; 
+            case 2: $sql .= " WHERE status like :info ORDER BY status"; $info = '%'.$info.'%'; break; 
         }
         $parametros = array();
         if ($tipo > 0)
@@ -122,7 +104,7 @@ class Consulta{
         $comando = Database::executar($sql, $parametros);
         $consultas = [];
         while ($registro = $comando->fetch()){
-            $consulta = new Consulta($registro['idconsulta'],$registro['status'],$registro['data_hora'],$medico['medico'],$paciente['paciente'],$clinica['clinica']);
+            $consulta = new Consulta($registro['idconsulta'],$registro['status'],$registro['data_hora'],$registro['idmedico'],$registro['idpaciente']);
             array_push($consultas,$consulta);
         }
         return $consultas;
@@ -132,23 +114,21 @@ class Consulta{
        $sql = "UPDATE consulta
                   SET status = :status, 
                       data_hora = :data_hora,
-                      medico = :medico,
-                      paciente = :paciente,
-                      clinica = :clinica
+                      idmedico = :idmedico,
+                      idpaciente = :idpaciente
                 WHERE idconsulta = :idconsulta";
-         $parametros = array(':idconsulta'=>$this->getidconsulta(),
+         $parametros = array(':idconsulta'=>$this->getConsulta(),
                         ':status'=>$this->getStatus(),
                         ':data_hora'=>$this->getDataHora(),
                         ':medico'=>$this->getMedico(),
-                        ':paciente'=>$this->getPaciente(),
-                        ':clinica'=>$this->getClinica());
+                        ':paciente'=>$this->getPaciente());
         return Database::executar($sql, $parametros) == true;
     }
 
     public function excluir():Bool{
         $sql = "DELETE FROM consulta
                       WHERE idconsulta = :idconsulta";
-        $parametros = array(':idconsulta'=>$this->getidconsulta());
+        $parametros = array(':idconsulta'=>$this->getConsulta());
         return Database::executar($sql, $parametros) == true;
      }
 }
