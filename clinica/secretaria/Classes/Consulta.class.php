@@ -69,7 +69,8 @@ class Consulta{
     }
     
     public function __toString():String{  
-        $str = "Consulta: $this->idconsulta - $this->status
+        $str = " - Consulta: $this->idconsulta,
+                 - Status: $this->status,
                  - Data_hora: $this->data_hora,
                  - Medico: $this->idmedico,
                  - Paciente: $this->idpaciente";        
@@ -84,8 +85,8 @@ class Consulta{
         
         $parametros = array(':status'=>$this->getStatus(),
                             ':data_hora'=>$this->getDataHora(),
-                            ':medico'=>$this->getMedico(),
-                            ':paciente'=>$this->getPaciente());
+                            ':idmedico'=>$this->getMedico(),
+                            ':idpaciente'=>$this->getPaciente());
         
         return Database::executar($sql, $parametros) == true;
     }
@@ -120,8 +121,8 @@ class Consulta{
          $parametros = array(':idconsulta'=>$this->getConsulta(),
                         ':status'=>$this->getStatus(),
                         ':data_hora'=>$this->getDataHora(),
-                        ':medico'=>$this->getMedico(),
-                        ':paciente'=>$this->getPaciente());
+                        ':idmedico'=>$this->getMedico(),
+                        ':idpaciente'=>$this->getPaciente());
         return Database::executar($sql, $parametros) == true;
     }
 
