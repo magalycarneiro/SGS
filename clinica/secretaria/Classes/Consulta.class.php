@@ -96,7 +96,16 @@ class Consulta{
         switch ($tipo){
             case 0: break;
             case 1: $sql .= " WHERE idconsulta = :info ORDER BY idconsulta"; break; 
-            case 2: $sql .= " WHERE status like :info ORDER BY status"; $info = '%'.$info.'%'; break; 
+            case 2: $sql .= " WHERE idpaciente like :info ORDER BY idpaciente"; $info = '%'.$info.'%'; break;
+            case 3: $sql .= " WHERE idmedico like :info ORDER BY idmedico"; $info = '%'.$info.'%'; break;
+            case 4: 
+                if (stripos($info, 'confirmada') !== false) {
+                    $info = '1';
+                } elseif (stripos($info, 'não confirmada') !== false || stripos($info, 'nao confirmada') !== false) {
+                    $info = '2';}
+                $sql .= " WHERE status = :info ORDER BY status"; 
+                break;
+            
         }
         $parametros = array();
         if ($tipo > 0)
