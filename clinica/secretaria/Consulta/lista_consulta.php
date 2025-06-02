@@ -27,5 +27,14 @@ function formatarDataHora($data_hora) {
     $date = new DateTime($data_hora);
     return $date->format('d/m/Y H:i');
 } 
+
+function formatarStatus($status) {
+    switch ($status) {
+        case '1': return 'Confirmada';
+        case '2': return 'Não confirmada';
+        default:  return 'Desconhecido';
+    }
+}
+
 ?>
 
