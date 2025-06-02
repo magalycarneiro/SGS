@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($resultado) {
         $consulta = $resultado[0];
         $formulario = str_replace('{idconsulta}', $consulta->getConsulta(), $formulario);
-        $formulario = str_replace('{status}', $status->getStatus(), $formulario);
+        $formulario = str_replace('{status}', $consulta->getStatus(), $formulario);
         $formulario = str_replace('{idpaciente}', $consulta->getPaciente(), $formulario);
         $formulario = str_replace('{idmedico}', $consulta->getMedico(), $formulario);
         $formulario = str_replace('{data_hora}', $consulta->getDataHora(), $formulario);  
