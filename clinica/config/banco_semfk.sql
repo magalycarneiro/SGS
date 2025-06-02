@@ -57,12 +57,12 @@ create table consulta (
     idconsulta int primary key auto_increment,
     data_hora datetime,
     status varchar(45),
-    idmedico int,
-    idprontuario int,
+    idmedico varchar(45),
+    idprontuario varchar(45),
     idsecretaria int,
-    idpaciente int
+    idpaciente varchar(45)
 );
-
+select * from consulta;
 create table pacientemedico (
     idmedico int,
     idpaciente int,

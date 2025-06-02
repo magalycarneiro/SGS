@@ -141,18 +141,18 @@
         <fieldset>
             <legend>Formulário de Agendamento</legend>
             <label for="idconsulta">Código da Consulta:</label><br>
-            <input type="text" name="idconsulta" readonly value={idconsulta}><br><br>
+            <input type="text" name="idconsulta" readonly value="{idconsulta}"><br><br>
             <label for="status">Status da consulta</label><br>
             <select name="status" id="status">
                 <option value="1">Confirmada</option>
                 <option value="2">Não confirmada</option>
             </select><br><br>
             <label for="idpaciente">Nome do Paciente:</label><br>
-            <input type="text" name="idpaciente" value={idpaciente}><br><br>
+            <input type="text" name="idpaciente" value="{idpaciente}"><br><br>
             <label for="idmedico">Médico Responsável:</label><br>
-            <input type="text" name="idmedico" value={idmedico}><br><br>
+            <input type="text" name="idmedico" value="{idmedico}"><br><br>
             <label for="data_hora">Data e Horário:</label><br>
-            <input type="datetime-local" name="data_hora" value={data_hora}><br><br>
+            <input type="datetime-local" name="data_hora" value="{data_hora}"><br><br>
             <button type="submit" name="acao" value="salvar">Agendar Consulta</button>
             <button type="submit" name="acao" value="excluir">Cancelar Consulta</button>
             <input type="reset" value="Limpar Campos">

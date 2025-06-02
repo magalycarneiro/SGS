@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data_hora = isset($_POST['data_hora']) ? $_POST['data_hora'] : "";
     $acao = isset($_POST['acao']) ? $_POST['acao'] : "";
     
-    $consulta = new Consulta($idconsulta, $status, $idpaciente, $idmedico, $data_hora);
+    $consulta = new Consulta($idconsulta, $status, $data_hora, $idmedico, $idpaciente);
     
     if ($acao == 'salvar') {
         if ($idconsulta > 0) {
