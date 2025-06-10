@@ -195,7 +195,7 @@
             <p>Emita receitas e atestados</p>
         </div>
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Atestado/cadastro_atestado.php'">
     <i class="fas fa-file-signature"></i>
     <h2>Atestado</h2>
     <p>Emita atestados médicos com facilidade</p>
