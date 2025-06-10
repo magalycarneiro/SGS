@@ -194,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="login-container">
         <div class="logo">
-            <img src="img/logo3.png" alt="Clínica Médica">
+            <img src="img/logo2.png" alt="Clínica Médica">
         </div>
         
         <h2 class="form-title">Acesso ao Sistema</h2>

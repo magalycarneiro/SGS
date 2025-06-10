@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Médico - Conclínica</title>
+    <title>Painel Médico</title>
     <style>
         :root {
             --primary-dark: #693E7F;

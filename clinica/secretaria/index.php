@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel da Secretária - Conclínica</title>
+    <title>Painel da Secretária</title>
     <style>
         :root {
             --primary-dark: #693E7F;
@@ -175,12 +175,6 @@
             <i class="fas fa-user-plus"></i>
             <h2>Cadastro de Pacientes</h2>
             <p>Adicione novos pacientes à clínica</p>
-        </div>
-
-        <div class="card" onclick="location.href='../medico/Prontuario/index.php'">
-            <i class="fas fa-folder-open"></i>
-            <h2>Prontuários</h2>
-            <p>Consultar prontuários médicos</p>
         </div>
 
         <div class="card" onclick="location.href='#'">
