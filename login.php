@@ -31,9 +31,10 @@ $usuarios = [
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
+    $selected_type = $_POST['user_type'] ?? 'paciente';
 
     // Verifica se o usuário existe e a senha está correta
-    if (isset($usuarios[$username]) && $usuarios[$username]['senha'] === $password) {
+    if (isset($usuarios[$username]) && $usuarios[$username]['senha'] === $password && $usuarios[$username]['tipo'] === $selected_type) {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
         $_SESSION['userdata'] = $usuarios[$username];
@@ -69,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Clínica Médica</title>
     <style>
-    
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
@@ -202,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="user-type-selector">
             <div class="user-type active" data-type="paciente">Paciente</div>
             <div class="user-type" data-type="medico">Médico</div>
-            <div class="user-type" data-type="secretaria">Clinica</div>
+            <div class="user-type" data-type="secretaria">Clínica</div>
         </div>
         
         <?php if (!empty($error)): ?>
@@ -210,8 +210,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
         
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <input type="hidden" id="user_type" name="user_type" value="paciente">
+            
             <div class="form-group">
-                <label for="email">Usuário (CPF/CRM/ID)</label>
+                <label for="email" id="user-label">Usuário</label>
                 <input type="text" class="form-control" id="email" name="email" placeholder="Digite seu usuário" required>
             </div>
             
@@ -223,20 +225,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="btn">Entrar</button>
         </form>
         
-        <div class="footer-links">
-            <a href="#">Esqueci minha senha</a> | <a href="#">Ajuda</a>
-        </div>
+        <script src="javascript/login.js"></script>
+        
     </div>
-
-    <script>
-        // Script para seleção do tipo de usuário
-        document.querySelectorAll('.user-type').forEach(type => {
-            type.addEventListener('click', function() {
-                document.querySelectorAll('.user-type').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                // Você pode adicionar aqui lógica para mudar o formulário conforme o tipo
-            });
-        });
-    </script>
 </body>
 </html>
