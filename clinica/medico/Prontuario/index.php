@@ -339,13 +339,6 @@ if ($idVisualizar > 0) {
             </div>
         </div>
 
-        <!-- Botão Adicionar -->
-        <div class="add-btn">
-            <a href="cadastro_prontuario.php" class="btn btn-success">+ Novo Prontuário</a>
-            <?php if ($idVisualizar > 0): ?>
-                <a href="index.php" class="btn btn-outline-secondary ms-2">Voltar para lista</a>
-            <?php endif; ?>
-        </div>
 
         <?php if ($idVisualizar > 0 && $prontuarioDetalhado): ?>
             <!-- Exibição detalhada do prontuário -->

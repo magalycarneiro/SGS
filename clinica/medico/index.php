@@ -167,9 +167,6 @@
             <button class="action-btn">
                 <i class="fas fa-bell"></i> Notificações
             </button>
-            <button class="action-btn">
-                <i class="fas fa-calendar-plus"></i> Novo Agendamento
-            </button>
         </div>
     </div>
 
@@ -180,16 +177,16 @@
             <p>Gerencie sua agenda e consultas</p>
         </div>
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Prontuario/index.php'">
             <i class="fas fa-users"></i>
             <h2>Pacientes</h2>
             <p>Acesse os prontuários e históricos</p>
         </div>
 
-        <div class="card" onclick="location.href='Prontuario/index.php'">
+        <div class="card" onclick="location.href='Prontuario/cadastro_prontuario.php'">
             <i class="fas fa-file-medical"></i>
-            <h2><a href="Prontuario/index.php">Prontuários</a></h2>
-            <p>Registros e anotações médicas</p>
+            <h2><a href="Prontuario/cadastro_prontuario.php">Prontuários</a></h2>
+            <p>Adicionar novo prontuário</p>
         </div>
 
         <div class="card" onclick="location.href='#'">
@@ -199,16 +196,31 @@
         </div>
 
         <div class="card" onclick="location.href='#'">
-            <i class="fas fa-chart-line"></i>
-            <h2>Relatórios</h2>
-            <p>Dados e estatísticas da clínica</p>
-        </div>
+    <i class="fas fa-file-signature"></i>
+    <h2>Atestado</h2>
+    <p>Emita atestados médicos com facilidade</p>
+</div>
+
+<div class="card" onclick="location.href='#'">
+    <i class="fas fa-paper-plane"></i>
+    <h2>Encaminhamento</h2>
+    <p>Encaminhe pacientes para especialistas</p>
+</div>
+
+<div class="card" onclick="location.href='#'">
+    <i class="fas fa-vials"></i>
+    <h2>Solicitação de Exames</h2>
+    <p>Solicite exames laboratoriais e de imagem</p>
+</div>
+
 
         <div class="card" onclick="location.href='#'">
             <i class="fas fa-cog"></i>
             <h2>Configurações</h2>
             <p>Personalize seu perfil e preferências</p>
         </div>
+
+        
     </div>
 </body>
 </html>
