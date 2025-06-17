@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../SGS/clinica/secretaria/index.php");
                 break;
             case 'paciente':
-                header("Location: clinica/paciente.php");
+                header("Location: ../SGS/clinica/paciente/index.php");
                 break;
             default:
                 header("Location: index.php");
