@@ -18,7 +18,7 @@ include "menu.php";
       <div class="hero-text">
         <span class="tag">Software médico</span>
         <h1>Escolhido por mais de 15 mil profissionais da saúde</h1>
-        <p>Do prontuário eletrônico ao relacionamento com seu paciente, o ******************* é o software médico completo para você alcançar seus objetivos como médico.</p>
+        <p>Do prontuário eletrônico ao relacionamento com seu paciente, o Lýra Clinic é o software médico completo para você alcançar seus objetivos como médico.</p>
         <strong>Ficou curioso? Entre em contato conosco e descubra como podemos ajudar!</strong>
         <div class="hero-buttons">
           <button class="btn-primary" id="abrirModal">Solicite um orçamento</button>

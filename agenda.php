@@ -29,7 +29,7 @@ include 'menu.php';
 </div>
 <br>
 <div class="card-doisfuncionalidade">
-    <h2>Descubra tudo que você pode fazer com a ****************</h2>
+    <h2>Descubra tudo que você pode fazer com a Lýra Clinic</h2>
     <p>Explore as funções de um sistema médico completo, construído para facilitar seu dia a dia e encantar seus pacientes.</p>
     </div>
 

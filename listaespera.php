@@ -6,7 +6,7 @@ include "menu.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lýra Clinics</title>
     <link rel="stylesheet" href="css/listaespera.css">
 </head>
 <body>
@@ -15,7 +15,7 @@ include "menu.php";
     <h1 class="section-title">Lista de espera</h1>
     <div class="content-wrapper">
       <p class="description">
-        A funcionalidade de Lista de Espera da ************* permite a gestão eficiente das consultas em clínicas e consultórios, possibilitando:
+        A funcionalidade de Lista de Espera da Lýra Clinics permite a gestão eficiente das consultas em clínicas e consultórios, possibilitando:
       </p>
       <ul class="features-list">
         <li class="feature-item">O rápido encaixe de pacientes em horários vagos</li>
