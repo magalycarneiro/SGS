@@ -117,18 +117,6 @@ class Atestado {
             error_log("Erro ao buscar atestado: " . $e->getMessage());
             return false;
         }
-    }
-
-    // Lista todos os atestados
-    public static function listarTodos() {
-        $sql = "SELECT * FROM atestados ORDER BY data DESC";
-        
-        try {
-            $resultado = Database::executar($sql);
-            return $resultado->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $e) {
-            error_log("Erro ao listar atestados: " . $e->getMessage());
-            return [];
-        }
-    }
-}
+    
+    }}
+  

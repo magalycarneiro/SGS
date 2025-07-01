@@ -14,7 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = $atestado->salvar();
         $nomeArquivo = $atestado->gerarPDF();
         
-        header("Location: index.php?sucesso=1&id=" . $id);
+        // Mostra o PDF com botão de impressão
+        header("Location: visualizar_atestado.php?id=" . $id);
         exit();
     } catch (Exception $e) {
         header("Location: form_cad_atestado.html?erro=" . urlencode($e->getMessage()));
