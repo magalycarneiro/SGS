@@ -1,0 +1,30 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Atestado Médico</title>
+            <style>
+                body { font-family: Arial; margin: 20px; }
+                .titulo { text-align: center; font-size: 18px; font-weight: bold; color: #693E7F; }
+                .conteudo { margin-top: 20px; line-height: 1.6; }
+                .assinatura { margin-top: 50px; text-align: center; border-top: 1px solid #000; padding-top: 10px; }
+            </style>
+        </head>
+        <body>
+            <div class="titulo">ATESTADO MÉDICO</div>
+            <div class="conteudo">
+                <p>Atesto que o(a) Sr(a). <strong>Manuela</strong> esteve sob meus cuidados médicos.</p>
+                <p>Diagnóstico: CID F70-F79</p>
+                <p>Recomenda-se repouso por 90 dias.</p>
+                <p>Observações: -</p>
+                <p>Local e Data: 31/08/0473</p>
+                
+                <div class="assinatura">
+                    <p>________________________________________</p>
+                    <p>Dra. Deolane</p>
+                    <p>CRM: </p>
+                </div>
+            </div>
+        </body>
+        </html>

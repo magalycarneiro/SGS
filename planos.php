@@ -6,7 +6,7 @@ include "menu.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planos</title>
+    <title>Lýra Clinics</title>
     <link rel="stylesheet" href="css/planos.css">
 </head>
 <body>
@@ -79,7 +79,7 @@ include "menu.php";
         <div class="faq-item">
             <div class="faq-question">1. Como é a segurança de dados do sistema?</div>
             <div class="faq-answer">
-                <p>Aqui na **************, tomamos todas as medidas de prevenção. 
+                <p>Aqui na Lýra Clinics, tomamos todas as medidas de prevenção. 
                     Nosso site utiliza HTTPS, o que significa que o ambiente é seguro. 
                     Todos os dados são criptografados (gravados em forma de código) e utilizamos os servidores da 
                     AWS (Amazon Web Services), referência mundial em segurança de dados.</p>
@@ -90,7 +90,7 @@ include "menu.php";
         <div class="faq-item">
             <div class="faq-question">2. Como funciona o processo de instalação?</div>
             <div class="faq-answer">
-                <p>A *************** é um software em nuvem, ou seja, não fica precisa ser instalado ou armazenado 
+                <p>A Lýra Clinics é um software em nuvem, ou seja, não fica precisa ser instalado ou armazenado 
                     em seu computador, não ocupando espaço de seu aparelho. Após a realização da assinatura, seu acesso e treinamentos na plataforma são liberados de forma imediata e já você já pode iniciar o uso do sistema.
 
 </p>

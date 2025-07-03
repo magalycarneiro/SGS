@@ -25,7 +25,7 @@ include "menu.php";
       <div class="feature-content">
         <p class="section-description">
           Um acompanhamento detalhado do pré-natal da sua paciente é um dos aspectos 
-          mais importantes no dia a dia de um médico obstetra. Na **************** você tem todo esse controle dentro do mesmo software.
+          mais importantes no dia a dia de um médico obstetra. Na Lýra Clinic você tem todo esse controle dentro do mesmo software.
         </p>
         
         <div class="feature-list">

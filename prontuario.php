@@ -19,7 +19,7 @@ include "menu.php";
     <div class="content-wrapper">
       <div class="text-content">
         <p class="section-description">
-          O prontuário eletrônico da *********** é personalizado de acordo com sua especialidade, além de integrado à plataforma de telemedicina.
+          O prontuário eletrônico da Lýra Clinic é personalizado de acordo com sua especialidade, além de integrado à plataforma de telemedicina.
         </p>
         
         <ul class="feature-list">
