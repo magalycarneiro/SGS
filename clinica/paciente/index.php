@@ -162,25 +162,25 @@
     </div>
 
     <div class="dashboard">
-        <div class="card" onclick="location.href='Consulta/index.php'">
+        <div class="card" onclick="location.href='Agendamento/index.php'">
             <i class="fas fa-calendar-alt"></i>
             <h2>Agendamentos</h2>
             <p>Marcar e gerenciar consultas</p>
         </div>
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Exames/index.php'">
          <i class="fas fa-vials"></i>
             <h2>Exames</h2>
              <p>Consulte seus exames laboratoriais e de imagem</p>
         </div>
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Atendimento/index.php'">
             <i class="fas fa-phone-volume"></i>
             <h2>Atendimentos</h2>
             <p>Gerencie os atendimentos presenciais e por telefone</p>
         </div>
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Configurações/index.php'">
             <i class="fas fa-cogs"></i>
             <h2>Configurações</h2>
             <p>Gerencie as preferências do sistema</p>

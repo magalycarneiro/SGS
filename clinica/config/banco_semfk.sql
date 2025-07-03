@@ -62,18 +62,18 @@ create table consulta (
     idsecretaria int,
     idpaciente varchar(45)
 );
-
-create table atestado (
-paciente varchar(250),
-medico varchar(250),
-data_hora date,
-cid varchar(250),
-dias int,
-observacoes varchar(250)
-);
 select * from consulta;
 create table pacientemedico (
     idmedico int,
     idpaciente int,
     primary key (idmedico, idpaciente)
 );
+
+create table agendamentos (
+    id INTEGER PRIMARY KEY auto_increment,
+    medico text,
+    data text,
+    hora text,
+    especialidade text
+);
+
