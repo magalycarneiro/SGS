@@ -1,4 +1,4 @@
-<?php
+<?php 
 // Caminho ABSOLUTO para config.inc.php
 require_once('C:/xampp/htdocs/SGS/clinica/config/config.inc.php');
 

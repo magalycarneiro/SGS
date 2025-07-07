@@ -62,7 +62,7 @@ create table consulta (
     idsecretaria int,
     idpaciente varchar(45)
 );
-select * from consulta;
+
 create table pacientemedico (
     idmedico int,
     idpaciente int,
