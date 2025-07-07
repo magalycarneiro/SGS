@@ -77,3 +77,22 @@ create table agendamentos (
     especialidade text
 );
 
+create table atendimentos (
+    id INTEGER PRIMARY KEY auto_increment,
+    data date,
+    tipo varchar(100),
+    obs varchar(300)
+);
+
+create table configuracoes (
+    id INTEGER PRIMARY KEY auto_increment,
+    notificacoes varchar(3),
+    tema varchar(6)
+);
+
+create table exames (
+    id INTEGER PRIMARY KEY auto_increment,
+    data date,
+    tipo varchar(250),
+    resultado varchar(250)
+);
