@@ -155,9 +155,13 @@
     <div class="header">
         <h1>Bem-vindo, Paciente</h1>
         <div class="quick-actions">
-            <button class="action-btn">
-                <i class="fas fa-bell"></i> Notificações
-            </button>
+          
+                    <a href="Notificações/notificacoes_paciente.php" class="action-btn">
+                         <i class="fas fa-bell"></i> Notificações
+    
+                    </a>
+              
+           
         </div>
     </div>
 
