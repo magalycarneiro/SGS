@@ -214,7 +214,7 @@
 </div>
 
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Configurações/index.php'">
             <i class="fas fa-cog"></i>
             <h2>Configurações</h2>
             <p>Personalize seu perfil e preferências</p>

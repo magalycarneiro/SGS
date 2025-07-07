@@ -189,7 +189,7 @@
             <p>Controle de pagamentos e convênios</p>
         </div>
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Configurações/index.php'">
             <i class="fas fa-cogs"></i>
             <h2>Configurações</h2>
             <p>Gerencie as preferências do sistema</p>
