@@ -203,7 +203,7 @@
 
 <div class="card" onclick="location.href='#'">
     <i class="fas fa-paper-plane"></i>
-    <h2>Encaminhamento</h2>
+     <h2><a href="Encaminhamento/cadastro_encaminhamento.php">Encaminhamentos</a></h2>
     <p>Encaminhe pacientes para especialistas</p>
 </div>
 

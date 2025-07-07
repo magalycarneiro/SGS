@@ -118,3 +118,14 @@ CREATE TABLE prescricoes (
     observacoes TEXT,
     arquivo VARCHAR(255)
 );
+
+CREATE TABLE encaminhamentos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paciente VARCHAR(100),
+    medico VARCHAR(100),
+    data DATE,
+    especialidade VARCHAR(100),
+    motivo TEXT,
+    observacoes TEXT,
+    arquivo VARCHAR(255)
+);
