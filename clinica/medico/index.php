@@ -191,7 +191,7 @@
 
         <div class="card" onclick="location.href='#'">
             <i class="fas fa-prescription-bottle-alt"></i>
-            <h2>Prescrições</h2>
+            <h2><a href="Prescricao/cadastro_prescricao.php">Prescrições</a></h2>
             <p>Emita receitas e atestados</p>
         </div>
 
