@@ -129,3 +129,15 @@ CREATE TABLE encaminhamentos (
     observacoes TEXT,
     arquivo VARCHAR(255)
 );
+
+CREATE TABLE solicitacoes_exames (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paciente VARCHAR(100),
+    medico VARCHAR(100),
+    data DATE,
+    tipo_exame VARCHAR(100),
+    indicacao TEXT,
+    urgente BOOLEAN DEFAULT 0,
+    observacoes TEXT,
+    arquivo VARCHAR(255)
+);

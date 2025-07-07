@@ -209,7 +209,7 @@
 
 <div class="card" onclick="location.href='#'">
     <i class="fas fa-vials"></i>
-    <h2>Solicitação de Exames</h2>
+    <h2><a href="SolicitacaoExame/cadastro_solicitacao.php">Solicitação de exames</a></h2>
     <p>Solicite exames laboratoriais e de imagem</p>
 </div>
 
