@@ -1,9 +1,24 @@
+<?php 
+include_once('includes/tema.php');
+
+// Define valores padrão caso as variáveis do tema não estejam definidas
+if (!isset($background)) {
+    $background = '#F8F9FA';  // cor clara padrão
+}
+if (!isset($textColor)) {
+    $textColor = '#212529';
+}
+if (!isset($cardBg)) {
+    $cardBg = '#FFFFFF';
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Painel do Paciente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         :root {
             --primary-dark: #693E7F;
@@ -12,26 +27,20 @@
             --primary-lighter: #B579DC;
             --primary-lightest: #C2AAE3;
             --text-on-primary: #FFFFFF;
-            --background: #F8F9FA;
-            --card-background: #FFFFFF;
-            --text-color: #212529;
-            --text-muted: #6C757D;
+            --background-claro: #F8F9FA;
+            --background-escuro: #1E1E1E;
+            --card-background-claro: #FFFFFF;
+            --card-background-escuro: #2C2C2C;
+            --text-color-claro: #212529;
+            --text-color-escuro: #E5E5E5;
             --border-color: #E9ECEF;
-            --success-color: #28a745;
-            --error-color: #dc3545;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--background);
+            background-color: <?= $background ?>;
+            color: <?= $textColor ?>;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 20px;
-            color: var(--text-color);
         }
 
         .header {
@@ -57,7 +66,7 @@
         }
 
         .card {
-            background-color: var(--card-background);
+            background-color: <?= $cardBg ?>;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -84,14 +93,6 @@
             margin-bottom: 10px;
             color: var(--primary-dark);
             font-weight: 600;
-        }
-
-        .card h2 a {
-            text-decoration: none !important;
-            color: var(--primary-dark) !important;
-            font-size: inherit !important;
-            font-weight: inherit !important;
-            display: inline-block;
         }
 
         .card p {
@@ -126,30 +127,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-
-        .action-btn i {
-            font-size: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .quick-actions {
-                margin-top: 15px;
-                width: 100%;
-            }
-
-            .action-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="header">
@@ -169,9 +147,9 @@
         </div>
 
         <div class="card" onclick="location.href='Exames/index.php'">
-         <i class="fas fa-vials"></i>
+            <i class="fas fa-vials"></i>
             <h2>Exames</h2>
-             <p>Consulte seus exames laboratoriais e de imagem</p>
+            <p>Consulte seus exames laboratoriais e de imagem</p>
         </div>
 
         <div class="card" onclick="location.href='Atendimento/index.php'">
