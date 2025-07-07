@@ -155,9 +155,10 @@
     <div class="header">
         <h1>Bem-vinda, Secretária</h1>
         <div class="quick-actions">
-            <button class="action-btn">
-                <i class="fas fa-bell"></i> Notificações
-            </button>
+              <a href="Notificações/notificacoes_secretaria.php" class="action-btn">
+                         <i class="fas fa-bell"></i> Notificações
+    
+                    </a>
             <button class="action-btn">
                 <i class="fas fa-user-plus"></i> Novo Paciente
             </button>
