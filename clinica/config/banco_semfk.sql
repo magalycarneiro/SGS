@@ -107,3 +107,14 @@ CREATE TABLE atestados (
     observacoes TEXT,
     arquivo VARCHAR(255)
 );
+
+CREATE TABLE prescricoes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paciente VARCHAR(100),
+    medico VARCHAR(100),
+    data DATE,
+    medicamentos TEXT,
+    posologia TEXT,
+    observacoes TEXT,
+    arquivo VARCHAR(255)
+);
