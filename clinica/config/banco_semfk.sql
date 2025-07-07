@@ -96,3 +96,14 @@ create table exames (
     tipo varchar(250),
     resultado varchar(250)
 );
+
+CREATE TABLE atestados (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paciente VARCHAR(100),
+    medico VARCHAR(100),
+    data DATE,
+    cid VARCHAR(20),
+    dias INT,
+    observacoes TEXT,
+    arquivo VARCHAR(255)
+);
