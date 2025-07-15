@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Prescrição</title>
+    <title>Solicitação de Exames</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,6 +40,14 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
         button {
             background-color: #935CC4;
             color: white;
@@ -60,8 +68,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cadastro de Prescrição Médica</h1>
-        <form action="cadastro_prescricao.php" method="post">
+        <h1>Solicitação de Exames</h1>
+        <form action="cadastro_solicitacao.php" method="post">
             <div class="form-group">
                 <label for="paciente">Nome do Paciente:</label>
                 <input type="text" id="paciente" name="paciente" required>
@@ -78,13 +86,28 @@
             </div>
             
             <div class="form-group">
-                <label for="medicamentos">Medicamentos:</label>
-                <textarea id="medicamentos" name="medicamentos" rows="4" required></textarea>
+                <label for="tipoExame">Tipo de Exame:</label>
+                <select id="tipoExame" name="tipoExame" required>
+                    <option value="">Selecione...</option>
+                    <option value="Hemograma completo">Hemograma completo</option>
+                    <option value="Glicemia em jejum">Glicemia em jejum</option>
+                    <option value="Colesterol total e frações">Colesterol total e frações</option>
+                    <option value="Ultrassonografia">Ultrassonografia</option>
+                    <option value="Radiografia">Radiografia</option>
+                    <option value="Tomografia">Tomografia</option>
+                    <option value="Ressonância Magnética">Ressonância Magnética</option>
+                    <option value="Outros">Outros</option>
+                </select>
             </div>
             
             <div class="form-group">
-                <label for="posologia">Posologia:</label>
-                <textarea id="posologia" name="posologia" rows="4" required></textarea>
+                <label for="indicacao">Indicação Clínica:</label>
+                <textarea id="indicacao" name="indicacao" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="urgente" name="urgente" value="1">
+                <label for="urgente">Exame Urgente</label>
             </div>
             
             <div class="form-group">
@@ -94,7 +117,7 @@
             
             <div class="form-group">
                 <button type="button" class="btn-voltar" onclick="window.location.href='index.php'">Voltar</button>
-                <button type="submit">Gerar Prescrição</button>
+                <button type="submit">Gerar Solicitação</button>
             </div>
         </form>
     </div>

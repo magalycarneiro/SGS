@@ -1,21 +1,23 @@
 <?php
-require_once(__DIR__ . '/../Classes/Prescricao.class.php');
+require_once(__DIR__ . '/../Classes/SolicitacaoExame.class.php');
 
 $mensagem = '';
 if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1) {
-    $mensagem = '<div class="alert success">Prescrição gerada com sucesso! ID: ' . htmlspecialchars($_GET['id']) . '</div>';
+    $mensagem = '<div class="alert success">Solicitação gerada com sucesso! ID: ' . htmlspecialchars($_GET['id']) . '</div>';
 }
 
 if (isset($_GET['erro'])) {
     $mensagem = '<div class="alert error">' . htmlspecialchars($_GET['erro']) . '</div>';
 }
+
+$solicitacoes = SolicitacaoExame::listarTodos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão de Prescrições Médicas</title>
+    <title>Gestão de Solicitações de Exame</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,6 +73,10 @@ if (isset($_GET['erro'])) {
         tr:hover {
             background-color: #e9e9e9;
         }
+        .urgente {
+            color: #dc3545;
+            font-weight: bold;
+        }
         .btn {
             padding: 8px 12px;
             text-decoration: none;
@@ -94,13 +100,6 @@ if (isset($_GET['erro'])) {
         .btn-view:hover {
             background-color: #935CC4;
         }
-        .btn-edit {
-            background-color: #B579DC;
-            color: white;
-        }
-        .btn-edit:hover {
-            background-color: #A56ACB;
-        }
         .btn-delete {
             background-color: #d9534f;
             color: white;
@@ -115,12 +114,12 @@ if (isset($_GET['erro'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Gestão de Prescrições Médicas</h1>
+        <h1>Gestão de Solicitações de Exame</h1>
         
         <?php echo $mensagem; ?>
         
         <div>
-            <a href="form_cad_prescricao.html" class="btn btn-primary">Nova Prescrição</a>
+            <a href="form_cad_solicitacao.html" class="btn btn-primary">Nova Solicitação</a>
         </div>
         
         <table>
@@ -128,27 +127,28 @@ if (isset($_GET['erro'])) {
                 <tr>
                     <th>ID</th>
                     <th>Paciente</th>
-                    <th>Médico</th>
                     <th>Data</th>
+                    <th>Tipo de Exame</th>
+                    <th>Urgente</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $prescricoes = Database::executar("SELECT * FROM prescricoes ORDER BY data DESC")->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($prescricoes as $prescricao) {
-                    echo '<tr>
-                            <td>' . $prescricao['id'] . '</td>
-                            <td>' . htmlspecialchars($prescricao['paciente']) . '</td>
-                            <td>' . htmlspecialchars($prescricao['medico']) . '</td>
-                            <td>' . date('d/m/Y', strtotime($prescricao['data'])) . '</td>
-                            <td class="actions">
-                                <a href="visualizar_prescricao.php?id=' . $prescricao['id'] . '" class="btn btn-view">Visualizar</a>
-                                <a href="#" class="btn btn-delete">Excluir</a>
-                            </td>
-                          </tr>';
-                }
-                ?>
+                <?php foreach ($solicitacoes as $solicitacao): ?>
+                <tr>
+                    <td><?= $solicitacao['id'] ?></td>
+                    <td><?= htmlspecialchars($solicitacao['paciente']) ?></td>
+                    <td><?= date('d/m/Y', strtotime($solicitacao['data'])) ?></td>
+                    <td><?= htmlspecialchars($solicitacao['tipo_exame']) ?></td>
+                    <td class="<?= $solicitacao['urgente'] ? 'urgente' : '' ?>">
+                        <?= $solicitacao['urgente'] ? 'Sim' : 'Não' ?>
+                    </td>
+                    <td class="actions">
+                        <a href="visualizar_solicitacao.php?id=<?= $solicitacao['id'] ?>" class="btn btn-view">Visualizar</a>
+                        <a href="#" class="btn btn-delete">Excluir</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -156,7 +156,7 @@ if (isset($_GET['erro'])) {
     <script>
         document.querySelectorAll('.btn-delete').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                if (!confirm('Tem certeza que deseja excluir esta prescrição?')) {
+                if (!confirm('Tem certeza que deseja excluir esta solicitação?')) {
                     e.preventDefault();
                 }
             });

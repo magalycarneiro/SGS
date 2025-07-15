@@ -1,21 +1,23 @@
 <?php
-require_once(__DIR__ . '/../Classes/Prescricao.class.php');
+require_once(__DIR__ . '/../Classes/Encaminhamento.class.php');
 
 $mensagem = '';
 if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1) {
-    $mensagem = '<div class="alert success">Prescrição gerada com sucesso! ID: ' . htmlspecialchars($_GET['id']) . '</div>';
+    $mensagem = '<div class="alert success">Encaminhamento gerado com sucesso! ID: ' . htmlspecialchars($_GET['id']) . '</div>';
 }
 
 if (isset($_GET['erro'])) {
     $mensagem = '<div class="alert error">' . htmlspecialchars($_GET['erro']) . '</div>';
 }
+
+$encaminhamentos = Encaminhamento::listarTodos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão de Prescrições Médicas</title>
+    <title>Gestão de Encaminhamentos Médicos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -115,12 +117,12 @@ if (isset($_GET['erro'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Gestão de Prescrições Médicas</h1>
+        <h1>Gestão de Encaminhamentos Médicos</h1>
         
         <?php echo $mensagem; ?>
         
         <div>
-            <a href="form_cad_prescricao.html" class="btn btn-primary">Nova Prescrição</a>
+            <a href="form_cad_encaminhamento.html" class="btn btn-primary">Novo Encaminhamento</a>
         </div>
         
         <table>
@@ -130,25 +132,24 @@ if (isset($_GET['erro'])) {
                     <th>Paciente</th>
                     <th>Médico</th>
                     <th>Data</th>
+                    <th>Especialidade</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $prescricoes = Database::executar("SELECT * FROM prescricoes ORDER BY data DESC")->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($prescricoes as $prescricao) {
-                    echo '<tr>
-                            <td>' . $prescricao['id'] . '</td>
-                            <td>' . htmlspecialchars($prescricao['paciente']) . '</td>
-                            <td>' . htmlspecialchars($prescricao['medico']) . '</td>
-                            <td>' . date('d/m/Y', strtotime($prescricao['data'])) . '</td>
-                            <td class="actions">
-                                <a href="visualizar_prescricao.php?id=' . $prescricao['id'] . '" class="btn btn-view">Visualizar</a>
-                                <a href="#" class="btn btn-delete">Excluir</a>
-                            </td>
-                          </tr>';
-                }
-                ?>
+                <?php foreach ($encaminhamentos as $encaminhamento): ?>
+                <tr>
+                    <td><?= $encaminhamento['id'] ?></td>
+                    <td><?= htmlspecialchars($encaminhamento['paciente']) ?></td>
+                    <td><?= htmlspecialchars($encaminhamento['medico']) ?></td>
+                    <td><?= date('d/m/Y', strtotime($encaminhamento['data'])) ?></td>
+                    <td><?= htmlspecialchars($encaminhamento['especialidade']) ?></td>
+                    <td class="actions">
+                        <a href="visualizar_encaminhamento.php?id=<?= $encaminhamento['id'] ?>" class="btn btn-view">Visualizar</a>
+                        <a href="#" class="btn btn-delete">Excluir</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -156,7 +157,7 @@ if (isset($_GET['erro'])) {
     <script>
         document.querySelectorAll('.btn-delete').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                if (!confirm('Tem certeza que deseja excluir esta prescrição?')) {
+                if (!confirm('Tem certeza que deseja excluir este encaminhamento?')) {
                     e.preventDefault();
                 }
             });

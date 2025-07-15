@@ -1,0 +1,43 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Prescrição Médica</title>
+            <style>
+                body { font-family: Arial; margin: 20px; }
+                .titulo { text-align: center; font-size: 18px; font-weight: bold; color: #693E7F; }
+                .conteudo { margin-top: 20px; line-height: 1.6; }
+                .assinatura { margin-top: 50px; text-align: center; border-top: 1px solid #000; padding-top: 10px; }
+                table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+                th { background-color: #f2f2f2; text-align: left; padding: 8px; }
+                td { padding: 8px; border-bottom: 1px solid #ddd; }
+            </style>
+        </head>
+        <body>
+            <div class="titulo">PRESCRIÇÃO MÉDICA</div>
+            <div class="conteudo">
+                <p><strong>Paciente:</strong> Manuela</p>
+                <p><strong>Data:</strong> 23/03/4444</p>
+                
+                <table>
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Posologia</th>
+                    </tr>
+                    <tr>
+                        <td>Paracetamol</td>
+                        <td>3x ao dia</td>
+                    </tr>
+                </table>
+                
+                <p><strong>Observações:</strong> apenas se febre</p>
+                
+                <div class="assinatura">
+                    <p>________________________________________</p>
+                    <p>Dra. Deolane</p>
+                    <p>CRM: </p>
+                </div>
+            </div>
+        </body>
+        </html>

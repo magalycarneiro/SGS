@@ -1,3 +1,4 @@
+<?php include_once('../includes/tema.php'); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,20 +11,25 @@
             --primary: #935CC4;
             --primary-light: #A56ACB;
             --accent: #B579DC;
-            --background: #f5f5f5;
+            --background-claro: #f5f5f5;
+            --background-escuro: #1E1E1E;
+            --card-background-claro: #FFFFFF;
+            --card-background-escuro: #2C2C2C;
+            --text-color-claro: #212529;
+            --text-color-escuro: #E5E5E5;
         }
 
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--background);
-            color: #333;
+            background-color: <?= $background ?>;
+            color: <?= $textColor ?>;
         }
 
         .container {
             max-width: 800px;
             margin: 40px auto;
-            background: white;
+            background-color: <?= $cardBg ?>;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
@@ -37,12 +43,11 @@
 
         .no-notifications {
             text-align: center;
-            color: #888;
             font-size: 18px;
             padding: 40px 20px;
             border: 2px dashed var(--primary-light);
             border-radius: 8px;
-            background-color: #faf6ff;
+            background-color: rgba(179, 121, 220, 0.08);
         }
 
         .btn-voltar {

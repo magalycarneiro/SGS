@@ -62,7 +62,7 @@ create table consulta (
     idsecretaria int,
     idpaciente varchar(45)
 );
-select * from consulta;
+
 create table pacientemedico (
     idmedico int,
     idpaciente int,
@@ -95,4 +95,49 @@ create table exames (
     data date,
     tipo varchar(250),
     resultado varchar(250)
+);
+
+CREATE TABLE atestados (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paciente VARCHAR(100),
+    medico VARCHAR(100),
+    data DATE,
+    cid VARCHAR(20),
+    dias INT,
+    observacoes TEXT,
+    arquivo VARCHAR(255)
+);
+
+CREATE TABLE prescricoes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paciente VARCHAR(100),
+    medico VARCHAR(100),
+    data DATE,
+    medicamentos TEXT,
+    posologia TEXT,
+    observacoes TEXT,
+    arquivo VARCHAR(255)
+);
+
+CREATE TABLE encaminhamentos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paciente VARCHAR(100),
+    medico VARCHAR(100),
+    data DATE,
+    especialidade VARCHAR(100),
+    motivo TEXT,
+    observacoes TEXT,
+    arquivo VARCHAR(255)
+);
+
+CREATE TABLE solicitacoes_exames (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paciente VARCHAR(100),
+    medico VARCHAR(100),
+    data DATE,
+    tipo_exame VARCHAR(100),
+    indicacao TEXT,
+    urgente BOOLEAN DEFAULT 0,
+    observacoes TEXT,
+    arquivo VARCHAR(255)
 );

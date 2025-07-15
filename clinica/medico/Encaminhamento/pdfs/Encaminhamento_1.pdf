@@ -1,0 +1,42 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Encaminhamento Médico</title>
+            <style>
+                body { font-family: Arial; margin: 20px; }
+                .titulo { text-align: center; font-size: 18px; font-weight: bold; color: #693E7F; }
+                .conteudo { margin-top: 20px; line-height: 1.6; }
+                .assinatura { margin-top: 50px; text-align: center; border-top: 1px solid #000; padding-top: 10px; }
+                .dados { margin-bottom: 20px; }
+                .dados p { margin: 5px 0; }
+            </style>
+        </head>
+        <body>
+            <div class="titulo">ENCAMINHAMENTO MÉDICO</div>
+            <div class="conteudo">
+                <div class="dados">
+                    <p><strong>Paciente:</strong> Manuela</p>
+                    <p><strong>Data:</strong> 23/04/0043</p>
+                    <p><strong>Encaminhado para:</strong> Neurologia</p>
+                </div>
+                
+                <div class="motivo">
+                    <p><strong>Motivo do encaminhamento:</strong></p>
+                    <p>-</p>
+                </div>
+                
+                <div class="observacoes">
+                    <p><strong>Observações:</strong></p>
+                    <p>-</p>
+                </div>
+                
+                <div class="assinatura">
+                    <p>________________________________________</p>
+                    <p>Dra. Deolane</p>
+                    <p>CRM: </p>
+                </div>
+            </div>
+        </body>
+        </html>

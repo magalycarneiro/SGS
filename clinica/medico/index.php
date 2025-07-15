@@ -191,7 +191,7 @@
 
         <div class="card" onclick="location.href='#'">
             <i class="fas fa-prescription-bottle-alt"></i>
-            <h2>Prescrições</h2>
+            <h2><a href="Prescricao/cadastro_prescricao.php">Prescrições</a></h2>
             <p>Emita receitas e atestados</p>
         </div>
 
@@ -203,13 +203,13 @@
 
 <div class="card" onclick="location.href='#'">
     <i class="fas fa-paper-plane"></i>
-    <h2>Encaminhamento</h2>
+     <h2><a href="Encaminhamento/cadastro_encaminhamento.php">Encaminhamentos</a></h2>
     <p>Encaminhe pacientes para especialistas</p>
 </div>
 
 <div class="card" onclick="location.href='#'">
     <i class="fas fa-vials"></i>
-    <h2>Solicitação de Exames</h2>
+    <h2><a href="SolicitacaoExame/cadastro_solicitacao.php">Solicitação de exames</a></h2>
     <p>Solicite exames laboratoriais e de imagem</p>
 </div>
 

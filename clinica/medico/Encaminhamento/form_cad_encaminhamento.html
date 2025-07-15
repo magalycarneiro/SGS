@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Prescrição</title>
+    <title>Cadastro de Encaminhamento</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,8 +60,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cadastro de Prescrição Médica</h1>
-        <form action="cadastro_prescricao.php" method="post">
+        <h1>Cadastro de Encaminhamento Médico</h1>
+        <form action="cadastro_encaminhamento.php" method="post">
             <div class="form-group">
                 <label for="paciente">Nome do Paciente:</label>
                 <input type="text" id="paciente" name="paciente" required>
@@ -78,13 +78,22 @@
             </div>
             
             <div class="form-group">
-                <label for="medicamentos">Medicamentos:</label>
-                <textarea id="medicamentos" name="medicamentos" rows="4" required></textarea>
+                <label for="especialidade">Especialidade para encaminhamento:</label>
+                <select id="especialidade" name="especialidade" required>
+                    <option value="">Selecione...</option>
+                    <option value="Cardiologia">Cardiologia</option>
+                    <option value="Dermatologia">Dermatologia</option>
+                    <option value="Endocrinologia">Endocrinologia</option>
+                    <option value="Gastroenterologia">Gastroenterologia</option>
+                    <option value="Neurologia">Neurologia</option>
+                    <option value="Ortopedia">Ortopedia</option>
+                    <option value="Outra">Outra</option>
+                </select>
             </div>
             
             <div class="form-group">
-                <label for="posologia">Posologia:</label>
-                <textarea id="posologia" name="posologia" rows="4" required></textarea>
+                <label for="motivo">Motivo do encaminhamento:</label>
+                <textarea id="motivo" name="motivo" rows="4" required></textarea>
             </div>
             
             <div class="form-group">
@@ -94,7 +103,7 @@
             
             <div class="form-group">
                 <button type="button" class="btn-voltar" onclick="window.location.href='index.php'">Voltar</button>
-                <button type="submit">Gerar Prescrição</button>
+                <button type="submit">Gerar Encaminhamento</button>
             </div>
         </form>
     </div>
