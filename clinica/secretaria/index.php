@@ -169,7 +169,13 @@
         <div class="card" onclick="location.href='Consulta/index.php'">
             <i class="fas fa-calendar-alt"></i>
             <h2>Agendamentos</h2>
-            <p>Marcar e gerenciar consultas</p>
+            <p>Marque e gerencie consultas</p>
+        </div>
+
+        <div class="card" onclick="location.href='Consulta/index.php'">
+            <i class="fas fa-notes-medical"></i>
+            <h2>Consultas</h2>
+            <p>Visualize as consultas marcadas</p>
         </div>
 
         <div class="card" onclick="location.href='#'">
