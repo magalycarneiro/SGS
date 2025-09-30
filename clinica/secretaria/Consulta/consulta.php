@@ -1,55 +1,52 @@
 <?php
-require_once("../Classes/Consulta.class.php");
+require_once __DIR__ . '/../Classes/Consulta.class.php';
 
-$acao = $_POST['acao'] ?? $_GET['acao'] ?? null;
+$conn = new mysqli("localhost", "root", "", "sgs");
+if ($conn->connect_error) die("Erro de conexão: " . $conn->connect_error);
 
-function renderForm($c = null) {
-    $tpl = file_get_contents('form_cad_consulta.html');
-    $rep = [
-        '{idconsulta}' => $c ? $c->getConsulta() : '',
-        '{status}'     => $c ? $c->getStatus()   : '',
-        '{data_hora}'  => $c ? $c->getDataHora() : '',
-        '{idmedico}'   => $c ? $c->getMedico()   : '',
-        '{idpaciente}' => $c ? $c->getPaciente() : '',
-    ];
-    echo str_replace(array_keys($rep), array_values($rep), $tpl);
-    exit;
-}
+// Dados do POST
+$idconsulta = isset($_POST['idconsulta']) && $_POST['idconsulta'] !== '' ? (int) $_POST['idconsulta'] : null;
+$status     = $_POST['status'] ?? '';
+$data_hora  = $_POST['data_hora'] ?? '';
+$idmedico   = $_POST['idmedico'] ?? '';
+$idpaciente = $_POST['idpaciente'] ?? '';
+$acao       = $_POST['acao'] ?? '';
 
-switch ($acao) {
-    case 'salvar': // criar ou atualizar (se id vier preenchido)
-        $idconsulta = trim($_POST['idconsulta'] ?? '');
-        $status     = $_POST['status']     ?? '';
-        $data_hora  = $_POST['data_hora']  ?? '';
-        $idmedico   = $_POST['idmedico']   ?? '';
-        $idpaciente = $_POST['idpaciente'] ?? '';
+$consulta = new Consulta($idconsulta, $status, $data_hora, $idmedico, $idpaciente);
 
-        $consulta = new Consulta($idconsulta, $status, $data_hora, $idmedico, $idpaciente);
+if ($acao === "salvar") {
+    if ($consulta->idconsulta) {
+        // Atualiza consulta
+        $stmt = $conn->prepare("UPDATE consulta SET status=?, idpaciente=?, idmedico=?, data_hora=? WHERE idconsulta=?");
+        $stmt->bind_param("ssssi", $consulta->status, $consulta->idpaciente, $consulta->idmedico, $consulta->data_hora, $consulta->idconsulta);
+    } else {
+        // Nova consulta
+        $stmt = $conn->prepare("INSERT INTO consulta (status, idpaciente, idmedico, data_hora) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $consulta->status, $consulta->idpaciente, $consulta->idmedico, $consulta->data_hora);
+    }
 
-        if ($idconsulta === '' || $idconsulta === '0') {
-            $consulta->inserir();
+    if ($stmt->execute()) {
+        header("Location: lista_consulta.php");
+        exit();
+    } else {
+        die("Erro ao salvar consulta: " . $stmt->error);
+    }
+    $stmt->close();
+
+} elseif ($acao === "excluir") {
+    if ($consulta->idconsulta) {
+        $stmt = $conn->prepare("DELETE FROM consulta WHERE idconsulta=?");
+        $stmt->bind_param("i", $consulta->idconsulta);
+        if ($stmt->execute()) {
+            header("Location: lista_consulta.php");
+            exit();
         } else {
-            $consulta->alterar();
+            die("Erro ao excluir consulta: " . $stmt->error);
         }
-        header("Location: lista_consulta.php");
-        exit;
-
-    case 'editar':
-        $id = $_GET['idconsulta'] ?? '';
-        if ($id === '') { header("Location: lista_consulta.php"); exit; }
-        $lista = Consulta::listar(1, $id); // tipo 1 = por código
-        if (!$lista) { header("Location: lista_consulta.php"); exit; }
-        renderForm($lista[0]);
-
-    case 'excluir':
-        $id = $_GET['idconsulta'] ?? '';
-        if ($id !== '') {
-            $lista = Consulta::listar(1, $id);
-            if ($lista) { $lista[0]->excluir(); }
-        }
-        header("Location: lista_consulta.php");
-        exit;
-
-    default: // abrir formulário em branco
-        renderForm();
+        $stmt->close();
+    } else {
+        die("Nenhum código de consulta informado para exclusão.");
+    }
 }
+
+$conn->close();

@@ -21,7 +21,6 @@ $listagem = file_get_contents('listagem_consulta.html');
 $listagem = str_replace('{itens}', $itens, $listagem);
 print($listagem);
 
-// Helper function to format date
 function formatarDataHora($data_hora) {
     if (empty($data_hora)) return "";
     $date = new DateTime($data_hora);

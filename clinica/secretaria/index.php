@@ -166,13 +166,13 @@
     </div>
 
     <div class="dashboard">
-        <div class="card" onclick="location.href='Consulta/index.php'">
+        <div class="card" onclick="location.href='Consulta/form_cad_consulta.php'">
             <i class="fas fa-calendar-alt"></i>
             <h2>Agendamentos</h2>
             <p>Marque e gerencie consultas</p>
         </div>
 
-        <div class="card" onclick="location.href='Consulta/index.php'">
+        <div class="card" onclick="location.href='Consulta/lista_consulta.php'">
             <i class="fas fa-notes-medical"></i>
             <h2>Consultas</h2>
             <p>Visualize as consultas marcadas</p>

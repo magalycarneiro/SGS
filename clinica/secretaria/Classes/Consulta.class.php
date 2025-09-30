@@ -2,18 +2,18 @@
 require_once(__DIR__ . '/../../Classe/Database.class.php');
 
 
-class Consulta{
-    private int $idconsulta;
-    private $status;
-    private $data_hora;
-    private $idmedico;
-    private $idpaciente;
+class Consulta {
+    public ?int $idconsulta;   
+    public string $status;
+    public string $data_hora;
+    public string $idmedico;
+    public string $idpaciente;
 
-    public function __construct($idconsulta,$status,$data_hora,$idmedico,$idpaciente){
+    public function __construct(?int $idconsulta, string $status, string $data_hora, string $idmedico, string $idpaciente) {
         $this->idconsulta = $idconsulta;
-        $this->status = $status;
-        $this->data_hora = $data_hora;
-        $this->idmedico = $idmedico;
+        $this->status     = $status;
+        $this->data_hora  = $data_hora;
+        $this->idmedico   = $idmedico;
         $this->idpaciente = $idpaciente;
     }
 

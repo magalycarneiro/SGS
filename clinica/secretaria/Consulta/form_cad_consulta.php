@@ -118,14 +118,15 @@
 
     <h1>Agendamento de Consulta Médica</h1>
 
-    <form action="index.php" method="post" enctype="multipart/form-data">
+    <form action="consulta.php" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Formulário de Agendamento</legend>
 
             <div class="form-group">
                 <div class="form-field">
                     <label for="idconsulta">Código da Consulta:</label>
-                    <input type="text" name="idconsulta" readonly value="{idconsulta}">
+                    <input type="text" name="idconsulta" readonly 
+                           value="<?php echo $consulta['idconsulta'] ?? ''; ?>">
                 </div>
 
                 <div class="form-field">
@@ -139,20 +140,24 @@
 
             <div class="form-group">
                 <div class="form-field">
-                    <label for="idpaciente">Nome do Paciente:</label>
-                    <input type="text" name="idpaciente" value="{idpaciente}">
+                    <label for="nomepaciente">Nome do Paciente:</label>
+                    <input type="hidden" name="idpaciente" value="<?php echo $paciente['id'] ?? ''; ?>">
+                    <input type="text" id="nomepaciente"
+                           value="<?php echo htmlspecialchars($paciente['nome'] ?? ''); ?>">
                 </div>
 
                 <div class="form-field">
                     <label for="idmedico">Médico Responsável:</label>
-                    <input type="text" name="idmedico" value="{idmedico}">
+                    <input type="text" name="idmedico" 
+                           value="<?php echo $medico['id'] ?? ''; ?>">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="form-field">
                     <label for="data_hora">Data e Horário:</label>
-                    <input type="datetime-local" name="data_hora" value="{data_hora}">
+                    <input type="datetime-local" name="data_hora" 
+                           value="<?php echo $consulta['data_hora'] ?? ''; ?>">
                 </div>
             </div>
 
