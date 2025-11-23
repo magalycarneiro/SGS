@@ -2,22 +2,20 @@
 class Exame {
     private $tipo;
     private $data;
-    private $resultado;
 
-    public function __construct($tipo, $data, $resultado) {
+    public function __construct($tipo, $data) {
         $this->tipo = $tipo;
         $this->data = $data;
-        $this->resultado = $resultado;
     }
 
     public static function listarTodos() {
         return [
-            new Exame('Hemograma', '2025-06-25', 'Normal'),
-            new Exame('Raio-X Tórax', '2025-06-20', 'Sem alterações')
+            new Exame('Hemograma', '2025-06-25'),
+            new Exame('Raio-X Tórax', '2025-06-20')
         ];
     }
 
     public function getInfo() {
-        return "{$this->data} - {$this->tipo}: {$this->resultado}";
+        return "{$this->data} - {$this->tipo}";
     }
 }
