@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notificações</title>
+    
     <style>
         :root {
             --primary-dark: #693E7F;
@@ -11,19 +12,21 @@
             --primary-light: #A56ACB;
             --accent: #B579DC;
             --background: #f5f5f5;
+            --card-background: #ffffff;
+            --text-color: #333333;
         }
 
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--background);
-            color: #333;
+            color: var(--text-color);
         }
 
         .container {
             max-width: 800px;
             margin: 40px auto;
-            background: white;
+            background: var(--card-background);
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
@@ -42,7 +45,7 @@
             padding: 40px 20px;
             border: 2px dashed var(--primary-light);
             border-radius: 8px;
-            background-color: #faf6ff;
+            background-color: var(--background);
         }
 
         .btn-voltar {
@@ -67,7 +70,11 @@
             margin-bottom: 15px;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <?php include_once(__DIR__ . '/../includes/tema.php'); ?>
+
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -79,7 +86,9 @@
         </div>
 
         <div style="text-align: center;">
-            <a href="../index.php" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar ao painel</a>
+            <a href="../index.php" class="btn-voltar">
+                <i class="fas fa-arrow-left"></i> Voltar ao painel
+            </a>
         </div>
     </div>
 </body>

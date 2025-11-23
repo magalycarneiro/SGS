@@ -1,4 +1,5 @@
 <?php
+include_once('../includes/tema.php');
 require_once(__DIR__ . '/../Classes/Atestado.class.php');
 
 $id = $_GET['id'] ?? null;
