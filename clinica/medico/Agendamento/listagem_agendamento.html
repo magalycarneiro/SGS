@@ -1,0 +1,7 @@
+<h3>Detalhes do Agendamento</h3>
+
+<p><strong>Paciente:</strong> <?= $item['nome_paciente']; ?></p>
+<p><strong>Médico:</strong> <?= $item['nome_medico']; ?></p>
+<p><strong>Data:</strong> <?= date('d/m/Y', strtotime($item['data_consulta'])); ?></p>
+<p><strong>Horário:</strong> <?= date('H:i', strtotime($item['horario'])); ?></p>
+<p><strong>Observações:</strong> <?= $item['observacoes']; ?></p>
