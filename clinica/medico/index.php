@@ -162,7 +162,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>Bem-vindo, Dr. (Nome)</h1>
+        <h1>Bem-vindo, Dr. João</h1>
         <div class="quick-actions">
             <a href="Notificações/notificacoes_medico.php" class="action-btn">
     <i class="fas fa-bell"></i> Notificações
@@ -171,7 +171,7 @@
     </div>
 
     <div class="dashboard">
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Agendamento/index.php'">
             <i class="fas fa-calendar-alt"></i>
             <h2>Agendamentos</h2>
             <p>Gerencie sua agenda e consultas</p>
@@ -212,6 +212,12 @@
     <h2><a href="SolicitacaoExame/cadastro_solicitacao.php">Solicitação de exames</a></h2>
     <p>Solicite exames laboratoriais e de imagem</p>
 </div>
+
+<div class="card" onclick="location.href='Exames/index.php'">
+            <i class="fas fa-vials"></i>
+            <h2>Exames</h2>
+            <p>Consulte os exames de seus pacientes</p>
+        </div>
 
 
         <div class="card" onclick="location.href='Configurações/index.php'">

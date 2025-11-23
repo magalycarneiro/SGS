@@ -1,11 +1,11 @@
 <tr>
-    <td><a href='index.php?idconsulta={idconsulta}'>{idconsulta}</a></td>
+    <td>{idconsulta}</td>
     <td>{status}</td>
-    <td>{idpaciente}</td>
-    <td>{idmedico}</td>
+    <td>{paciente}</td>
+    <td>{medico}</td>
     <td>{data_hora}</td>
     <td>
-        <a href="editar_prontuario.php?id=1" class="btn-editar">Editar</a>
-        <a href="excluir_prontuario.php?id=1" class="btn-excluir">Excluir</a>
-    </td>   
+        <a href="index.php?idconsulta={idconsulta}" class="btn-editar">Editar</a>
+        <a href="lista_consulta.php?excluir={idconsulta}" class="btn-excluir">Excluir</a>
+    </td>
 </tr>

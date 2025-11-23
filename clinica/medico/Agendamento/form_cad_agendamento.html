@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Agendamento</title>
+
+<style>
+body {
+    font-family: Arial;
+    background-color: #f7f4fb;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+.form-container {
+    background: #fff;
+    width: 60%;
+    margin-top: 40px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+}
+h2 {
+    text-align: center;
+    color: #7a3ff3;
+    margin-bottom: 25px;
+}
+label {
+    font-weight: bold;
+    color: #6b34c9;
+    display: block;
+    margin-bottom: 6px;
+}
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #d1b8ff;
+    border-radius: 6px;
+    background: #faf9fd;
+}
+input:focus, textarea:focus {
+    border-color: #a077ff;
+    box-shadow: 0 0 4px rgba(122,63,243,0.4);
+}
+.btn {
+    background: #a077ff;
+    padding: 10px 25px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    border: none;
+    margin-right: 10px;
+}
+.btn:hover {
+    background: #7a3ff3;
+}
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Cadastro de Agendamento</h2>
+
+    <form action="cadastro_agendamento.php" method="POST">
+
+        <label>Nome do Paciente:</label>
+        <input type="text" name="nome_paciente" required>
+
+        <label>Nome do Médico:</label>
+        <input type="text" name="nome_medico" required>
+
+        <label>Data da Consulta:</label>
+        <input type="date" name="data_consulta" required>
+
+        <label>Horário:</label>
+        <input type="time" name="horario" required>
+
+        <label>Observações:</label>
+        <textarea name="observacoes" rows="4"></textarea>
+
+        <button type="submit" class="btn">Salvar Agendamento</button>
+        <a href="index.php" class="btn">Voltar</a>
+    </form>
+</div>
+
+</body>
+</html>

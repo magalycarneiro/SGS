@@ -8,7 +8,6 @@ class Configuracoes {
         $stmt = $conexao->query($sql);
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Se não houver, insere uma configuração padrão
         if (!$resultado) {
             self::salvar(true, 'claro');
             return ['notificacoes' => true, 'tema' => 'claro'];
