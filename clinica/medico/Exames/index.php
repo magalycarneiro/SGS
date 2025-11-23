@@ -1,6 +1,15 @@
 <?php
-// Dados estáticos de exemplo
 $exames = [
+     [
+        'paciente' => 'Magaly B. Carneiro',
+        'tipoExame' => 'Hemograma Completo',
+        'data' => '25/06/2025'
+    ],
+    [
+        'paciente' => 'Magaly B. Carneiro',
+        'tipoExame' => 'Raio-X Tórax',
+        'data' => '20/06/2025'
+    ],
     [
         'paciente' => 'Maria Silva',
         'tipoExame' => 'Radiografia',

@@ -1,7 +1,7 @@
 <?php
 // Lista de agendados (exemplo estático)
 $agendados = [
-    ['nome' => 'Maria Silva', 'data' => '25/11/2025', 'horario' => '14:00'],
+    ['nome' => 'Magaly B. Carneiro', 'data' => '25/11/2025', 'horario' => '13:00'],
     ['nome' => 'João Pereira', 'data' => '26/11/2025', 'horario' => '09:30'],
     ['nome' => 'Ana Costa', 'data' => '27/11/2025', 'horario' => '11:15'],
     ['nome' => 'Ricardo Martins', 'data' => '27/11/2025', 'horario' => '15:45']
