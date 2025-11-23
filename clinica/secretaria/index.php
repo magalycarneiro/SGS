@@ -153,7 +153,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>Bem-vinda, Secretária</h1>
+        <h1>Bem-vinda, Secretária(o)</h1>
         <div class="quick-actions">
               <a href="Notificações/notificacoes_secretaria.php" class="action-btn">
                          <i class="fas fa-bell"></i> Notificações
@@ -166,10 +166,16 @@
     </div>
 
     <div class="dashboard">
-        <div class="card" onclick="location.href='Consulta/index.php'">
+        <div class="card" onclick="location.href='Consulta/'">
             <i class="fas fa-calendar-alt"></i>
             <h2>Agendamentos</h2>
-            <p>Marcar e gerenciar consultas</p>
+            <p>Marque e gerencie consultas</p>
+        </div>
+
+        <div class="card" onclick="location.href='Consulta/lista_consulta.php'">
+            <i class="fas fa-notes-medical"></i>
+            <h2>Consultas</h2>
+            <p>Visualize as consultas marcadas</p>
         </div>
 
         <div class="card" onclick="location.href='#'">

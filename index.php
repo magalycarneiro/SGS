@@ -101,13 +101,13 @@ include "menu.php";
 
     <div class="slides">
       <div class="slide s1">
-      <img src="img/"  alt="Imagem 1">
+      <img src="img/"  alt="Imagem 1" >
       </div>
       <div class="slide s2">
         <img src="img/" alt="Imagem 2">
       </div>
       <div class="slide s3">
-        <img src="img3.jpg" alt="Imagem 3">
+        <img src="img/" alt="Imagem 3">
       </div>
     </div>
 

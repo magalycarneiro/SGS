@@ -115,54 +115,63 @@
     </style>
 </head>
 <body>
-
     <h1>Agendamento de Consulta Médica</h1>
 
-    <form action="index.php" method="post" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Formulário de Agendamento</legend>
+<form action="consulta.php" method="post">
+    <fieldset>
+        <legend>Formulário de Agendamento</legend>
 
-            <div class="form-group">
-                <div class="form-field">
-                    <label for="idconsulta">Código da Consulta:</label>
-                    <input type="text" name="idconsulta" readonly value="{idconsulta}">
-                </div>
-
-                <div class="form-field">
-                    <label for="status">Status da consulta</label>
-                    <select name="status" id="status">
-                        <option value="1" {status1}>Confirmada</option>
-                        <option value="2" {status2}>Não confirmada</option>
-                    </select>                    
-                </div>
+        <div class="form-group">
+            <div class="form-field">
+                <label for="idconsulta">Código da Consulta:</label>
+                <input type="text" name="idconsulta" readonly 
+                       value="{idconsulta}">
             </div>
 
-            <div class="form-group">
-                <div class="form-field">
-                    <label for="idpaciente">Nome do Paciente:</label>
-                    <input type="text" name="idpaciente" value="{idpaciente}">
-                </div>
+            <div class="form-field">
+                <label for="status">Status da consulta</label>
+                <select name="status" id="status">
+                    <option value="1" {status1}>Confirmada</option>
+                    <option value="2" {status2}>Não confirmada</option>
+                </select>                    
+            </div>
+        </div>
 
-                <div class="form-field">
-                    <label for="idmedico">Médico Responsável:</label>
-                    <input type="text" name="idmedico" value="{idmedico}">
-                </div>
+        <div class="form-group">
+            <div class="form-field">
+                <label for="idpaciente">Paciente:</label>
+                <input type="text" name="idpaciente" value="{idpaciente}">
             </div>
 
-            <div class="form-group">
-                <div class="form-field">
-                    <label for="data_hora">Data e Horário:</label>
-                    <input type="datetime-local" name="data_hora" value="{data_hora}">
-                </div>
+            <div class="form-field">
+                <label for="idmedico">Médico(a):</label>
+                <input type="text" name="idmedico" value="{idmedico}">
             </div>
+        </div>
 
-            <div class="button-group">
-                <button type="submit" name="acao" value="salvar">Agendar Consulta</button>
-                <button type="submit" name="acao" value="excluir">Cancelar Consulta</button>
-                <input type="reset" value="Limpar Campos">
+        <div class="form-group">
+            <div class="form-field">
+                <label for="data_hora">Data e Horário:</label>
+                <input type="datetime-local" name="data_hora" value="{data_hora}">
             </div>
-        </fieldset>
-    </form>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" name="acao" value="salvar">Agendar Consulta</button>
+            <button type="submit" name="acao" value="excluir">Cancelar Consulta</button>
+            <input type="reset" value="Limpar Campos">
+        </div>
+
+        <div class="button-group">
+            <a href="lista_consulta.php"
+               style="padding:10px 16px;border-radius:6px;background:#bdc3c7;color:#000;text-decoration:none;font-weight:bold;">
+               Ver Consultas
+            </a>
+        </div>
+
+    </fieldset>
+</form>
+
 
 </body>
 </html>

@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 
-$form = file_get_contents('form_cad_consulta.html');
+$form = file_get_contents('form_cad_consulta.php');
 
 $idconsulta = isset($_GET['idconsulta']) ? intval($_GET['idconsulta']) : 0;
 
@@ -58,4 +58,3 @@ if (!empty($resultado)) {
 echo $form;
 
 echo "<br><br><a href='lista_consulta.php'>Ver Lista de Consultas</a>";
-
