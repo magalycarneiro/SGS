@@ -1,4 +1,5 @@
 <?php
+include_once('../includes/tema.php');
 require_once(__DIR__ . '/../Classes/Encaminhamento.class.php');
 
 $mensagem = '';
