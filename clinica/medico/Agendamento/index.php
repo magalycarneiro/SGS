@@ -1,20 +1,108 @@
+<?php
+// Lista de agendados (exemplo estático)
+$agendados = [
+    ['nome' => 'Maria Silva', 'data' => '25/11/2025', 'horario' => '14:00'],
+    ['nome' => 'João Pereira', 'data' => '26/11/2025', 'horario' => '09:30'],
+    ['nome' => 'Ana Costa', 'data' => '27/11/2025', 'horario' => '11:15'],
+    ['nome' => 'Ricardo Martins', 'data' => '27/11/2025', 'horario' => '15:45']
+];
+?>
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Agendamento Médico</title>
-<style>
-body { background:#f7f4fb; font-family:Arial; display:flex; justify-content:center; }
-.container { background:#fff; width:50%; text-align:center; margin-top:60px; padding:40px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-h2 { color:#7a3ff3; margin-bottom:30px; }
-a { display:block; width:80%; margin:10px auto; padding:12px; background:#a077ff; color:white; text-decoration:none; border-radius:6px; }
-a:hover { background:#7a3ff3; }
-</style>
+    <meta charset="UTF-8">
+    <title>Agendamentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f1fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 750px;
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(199, 185, 211, 1);
+            border-top: 6px solid rgb(150, 102, 192);
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(150, 102, 192);
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0d7ff;
+        }
+
+        th {
+            background-color: rgb(150, 102, 192);
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f2eaff;
+        }
+
+        .btn-voltar {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            text-decoration: none;
+            background-color: rgb(150, 102, 192);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .btn-voltar:hover {
+            background-color: rgb(188, 157, 215);
+        }
+    </style>
 </head>
 <body>
+
 <div class="container">
-    <h2>Agendamentos</h2>
-    <a href="cadastro_agendamento.php">📅 Novo Agendamento</a>
+    <h1>Agendamentos Realizados</h1>
+
+    <table>
+        <tr>
+            <th>Nome do Paciente</th>
+            <th>Data</th>
+            <th>Horário</th>
+        </tr>
+
+        <?php foreach ($agendados as $agendamento): ?>
+            <tr>
+                <td><?= $agendamento['nome']; ?></td>
+                <td><?= $agendamento['data']; ?></td>
+                <td><?= $agendamento['horario']; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <a href="../index.php" class="btn-voltar">Voltar</a>
 </div>
+
 </body>
 </html>
