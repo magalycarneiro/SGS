@@ -6,14 +6,13 @@
                 const userType = this.dataset.type;
                 document.getElementById('user_type').value = userType;
                 
-                // Altera o label do usuário conforme o tipo
                 const userLabel = document.getElementById('user-label');
                 if (userType === 'paciente') {
                     userLabel.textContent = 'Usuário';
                 } else if (userType === 'medico') {
                     userLabel.textContent = 'Usuário (CRM)';
                 } else if (userType === 'secretaria') {
-                    userLabel.textContent = 'Usuário (ID)';
+                    userLabel.textContent = 'Usuário';
                 }
             });
         });

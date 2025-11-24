@@ -173,18 +173,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .user-type.active:hover {
             background-color: #5f0099;
         }
-        .footer-links {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-        }
-        .footer-links a {
-            color: #5f0099;
-            text-decoration: none;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
