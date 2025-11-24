@@ -1,9 +1,8 @@
 <?php 
 include_once('includes/tema.php');
 
-// Define valores padrão caso as variáveis do tema não estejam definidas
 if (!isset($background)) {
-    $background = '#F8F9FA';  // cor clara padrão
+    $background = '#F8F9FA';  
 }
 if (!isset($textColor)) {
     $textColor = '#212529';
@@ -131,7 +130,7 @@ if (!isset($cardBg)) {
 </head>
 <body>
     <div class="header">
-        <h1>Bem-vindo, Paciente</h1>
+        <h1>Bem-vindo(a), Magaly </h1>
         <div class="quick-actions">
           
                     <a href="Notificações/notificacoes_paciente.php" class="action-btn">

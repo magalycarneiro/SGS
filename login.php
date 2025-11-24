@@ -8,21 +8,21 @@ $usuarios = [
         'tipo' => 'admin',
         'nome' => 'Administrador'
     ],
-    'medico1' => [
+    'CRM-SC 125478' => [
         'senha' => 'medico123',
         'tipo' => 'medico',
         'nome' => 'Dr. João Silva',
         'especialidade' => 'Cardiologia'
     ],
-    'secretaria1' => [
+    'maria.souza' => [
         'senha' => 'secretaria123',
         'tipo' => 'secretaria',
         'nome' => 'Maria Souza'
     ],
-    'paciente1' => [
+    'magaly.carneiro' => [
         'senha' => 'paciente123',
         'tipo' => 'paciente',
-        'nome' => 'Carlos Oliveira',
+        'nome' => 'Magaly Becker Carneiro',
         'prontuario' => 'P12345'
     ]
 ];

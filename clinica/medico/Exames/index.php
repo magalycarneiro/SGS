@@ -1,6 +1,15 @@
 <?php
-// Dados estáticos de exemplo
 $exames = [
+     [
+        'paciente' => 'Magaly B. Carneiro',
+        'tipoExame' => 'Hemograma Completo',
+        'data' => '25/06/2025'
+    ],
+    [
+        'paciente' => 'Magaly B. Carneiro',
+        'tipoExame' => 'Raio-X Tórax',
+        'data' => '20/06/2025'
+    ],
     [
         'paciente' => 'Maria Silva',
         'tipoExame' => 'Radiografia',
@@ -38,12 +47,12 @@ $exames = [
             margin-top: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(140, 82, 255, 0.2);
-            border-top: 6px solid #7a3cff;
+            border-top: 6px solid rgb(150, 102, 192);
         }
 
         h1 {
             text-align: center;
-            color: #5a22c9;
+            color: rgb(150, 102, 192);
             margin-bottom: 25px;
             font-size: 22px;
         }
@@ -58,7 +67,7 @@ $exames = [
 
         .label {
             font-weight: bold;
-            color: #5a22c9;
+            color: rgb(150, 102, 192);
         }
 
         .btn-voltar {
@@ -66,7 +75,7 @@ $exames = [
             text-align: center;
             margin-top: 25px;
             text-decoration: none;
-            background-color: #5a22c9;
+            background-color: rgb(150, 102, 192);
             color: #ffffff;
             padding: 10px 20px;
             border-radius: 6px;
@@ -74,7 +83,7 @@ $exames = [
         }
 
         .btn-voltar:hover {
-            background-color: #4a1eac;
+            background-color: rgb(150, 102, 192);
         }
     </style>
 </head>
