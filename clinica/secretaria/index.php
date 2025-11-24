@@ -159,7 +159,7 @@
                          <i class="fas fa-bell"></i> Notificações
     
                     </a>
-            <button class="action-btn">
+            <button class="action-btn" onclick="location.href='paciente/'">
                 <i class="fas fa-user-plus"></i> Novo Paciente
             </button>
         </div>
@@ -178,13 +178,19 @@
             <p>Visualize as consultas marcadas</p>
         </div>
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='paciente/'">
             <i class="fas fa-user-plus"></i>
             <h2>Cadastro de Pacientes</h2>
             <p>Adicione novos pacientes à clínica</p>
         </div>
 
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='paciente/lista_paciente.php'">
+            <i class="fas fa-users"></i>
+            <h2>Pacientes Cadastrados</h2>
+            <p>Visualize os pacientes cadastrados</p>
+        </div>
+
+        <div class="card" onclick="location.href=''">
             <i class="fas fa-phone-volume"></i>
             <h2>Atendimentos</h2>
             <p>Gerencie os atendimentos presenciais e por telefone</p>

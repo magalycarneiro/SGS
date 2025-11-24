@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes Cadastrados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+  
+      body {
+          font-family: 'Segoe UI', sans-serif;
+          background-color: #f5f5f5;
+          padding: 40px;
+          color: #333;
+      }
+  
+      h1 {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #4B2C73;
+      }
+  
+      form {
+          background: #fff;
+          padding: 20px;
+          border-radius: 8px;
+          max-width: 800px;
+          margin: 0 auto 30px auto;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+  
+      fieldset {
+          border: none;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 15px;
+          align-items: center;
+          justify-content: space-between;
+      }
+  
+      label {
+          font-weight: bold;
+      }
+  
+      input[type="text"],
+      select {
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          width: 200px;
+      }
+  
+      button {
+          padding: 10px 16px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: bold;
+          color: white;
+          background-color: #8e44ad;
+          transition: background-color 0.3s;
+      }
+  
+      button:hover {
+          background-color: #732d91;
+      }
+  
+      table {
+          width: 100%;
+          max-width: 1000px;
+          margin: 0 auto;
+          background: white;
+          border-collapse: collapse;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+  
+      th {
+          background-color: #5e3d8f;
+          color: white;
+          padding: 12px;
+          text-align: left;
+      }
+  
+      td {
+          padding: 12px;
+          border-bottom: 1px solid #eee;
+      }
+  
+      tr:nth-child(even) {
+          background-color: #f9f9f9;
+      }
+  
+      .btn-editar {
+          background-color: #d6b656;
+          color: #000;
+          padding: 6px 12px;
+          border-radius: 4px;
+          text-decoration: none;
+          font-weight: bold;
+          margin-right: 8px;
+      }
+  
+      .btn-excluir {
+          background-color: #e57373;
+          color: white;
+          padding: 6px 12px;
+          border-radius: 4px;
+          text-decoration: none;
+          font-weight: bold;
+      }
+  
+  </style>
+  
+    </head>
+<body>
+
+    <form action="lista_paciente.php" method="GET">
+        <fieldset>
+            <legend>Filtrar Pacientes</legend>
+            <label for="busca">Buscar:</label>
+            <input type="text" name="busca" placeholder="Digite sua busca...">
+            
+            <label for="tipo">Filtrar por:</label>
+            <select name="tipo">
+                <option value="0">Todos</option>
+                <option value="1">Código</option>
+                <option value="2">Nome</option>
+                <option value="3">CPF</option>
+            </select>
+            
+            <button type="submit">Buscar</button>
+        </fieldset>
+    </form>
+
+    
+    <h1>Pacientes Cadastrados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th widht="30%">Código</th>
+                <th widht="30%">Nome</th>
+                <th widht="30%">CPF</th>
+                <th width="30%">Data/Nascimento</th>
+                <th widht="30%">Telefone</th>
+                <th widht="30%">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {itens}
+        </tbody>
+    </table>
+</body>
+</html>
