@@ -119,6 +119,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-decoration: none;
         }
 
         .action-btn:hover {
@@ -153,15 +154,12 @@
 </head>
 <body>
     <div class="header">
-        <h1>Bem-vinda, Secretária(o)</h1>
+        <h1>Bem-vindo(a), Maria</h1>
         <div class="quick-actions">
               <a href="Notificações/notificacoes_secretaria.php" class="action-btn">
                          <i class="fas fa-bell"></i> Notificações
     
                     </a>
-            <button class="action-btn" onclick="location.href='paciente/'">
-                <i class="fas fa-user-plus"></i> Novo Paciente
-            </button>
         </div>
     </div>
 
@@ -190,13 +188,7 @@
             <p>Visualize os pacientes cadastrados</p>
         </div>
 
-        <div class="card" onclick="location.href=''">
-            <i class="fas fa-phone-volume"></i>
-            <h2>Atendimentos</h2>
-            <p>Gerencie os atendimentos presenciais e por telefone</p>
-        </div>
-
-        <div class="card" onclick="location.href='#'">
+        <div class="card" onclick="location.href='Faturamento/index.php'">
             <i class="fas fa-file-invoice"></i>
             <h2>Faturamento</h2>
             <p>Controle de pagamentos e convênios</p>

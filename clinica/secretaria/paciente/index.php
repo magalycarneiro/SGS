@@ -63,4 +63,3 @@ if (!empty($resultado)) {
 
 echo $form;
 
-echo "<br><br><a href='lista_paciente.php'>Ver Lista de Pacientes</a>";

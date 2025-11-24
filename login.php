@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Simulação de banco de dados de usuários
 $usuarios = [
     'admin' => [
         'senha' => 'admin',
@@ -27,19 +26,16 @@ $usuarios = [
     ]
 ];
 
-// Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $selected_type = $_POST['user_type'] ?? 'paciente';
 
-    // Verifica se o usuário existe e a senha está correta
     if (isset($usuarios[$username]) && $usuarios[$username]['senha'] === $password && $usuarios[$username]['tipo'] === $selected_type) {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
         $_SESSION['userdata'] = $usuarios[$username];
         
-        // Redireciona conforme o tipo de usuário
         switch ($usuarios[$username]['tipo']) {
             case 'admin':
                 header("Location: admin.php");
@@ -72,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f8ff;
+            background-color: #f7e9ffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -172,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
         }
         .user-type:hover {
-            background-color: #e7f1ff;
+            background-color: #f4f8ffff;
         }
         .user-type.active:hover {
             background-color: #5f0099;

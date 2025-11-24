@@ -47,12 +47,12 @@ $exames = [
             margin-top: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(140, 82, 255, 0.2);
-            border-top: 6px solid rgb(150, 102, 192);
+            border-top: 6px solid #693E7F;
         }
 
         h1 {
             text-align: center;
-            color: rgb(150, 102, 192);
+            color:#693E7F;
             margin-bottom: 25px;
             font-size: 22px;
         }
@@ -67,7 +67,7 @@ $exames = [
 
         .label {
             font-weight: bold;
-            color: rgb(150, 102, 192);
+            color: #693E7F;
         }
 
         .btn-voltar {
@@ -75,7 +75,7 @@ $exames = [
             text-align: center;
             margin-top: 25px;
             text-decoration: none;
-            background-color: rgb(150, 102, 192);
+            background-color:#693E7F;
             color: #ffffff;
             padding: 10px 20px;
             border-radius: 6px;
@@ -83,7 +83,7 @@ $exames = [
         }
 
         .btn-voltar:hover {
-            background-color: rgb(150, 102, 192);
+            background-color:#693E7F;
         }
     </style>
 </head>

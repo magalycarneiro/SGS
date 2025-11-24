@@ -32,12 +32,12 @@ $agendados = [
             margin-top: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(199, 185, 211, 1);
-            border-top: 6px solid rgb(150, 102, 192);
+            border-top: 6px solid #693E7F;
         }
 
         h1 {
             text-align: center;
-            color: rgb(150, 102, 192);
+            color: #693E7F;
             margin-bottom: 25px;
             font-size: 24px;
         }
@@ -55,7 +55,7 @@ $agendados = [
         }
 
         th {
-            background-color: rgb(150, 102, 192);
+            background-color: #693E7F;
             color: white;
         }
 
@@ -68,7 +68,7 @@ $agendados = [
             text-align: center;
             margin-top: 30px;
             text-decoration: none;
-            background-color: rgb(150, 102, 192);
+            background-color: #693E7F;
             color: white;
             padding: 10px 20px;
             border-radius: 6px;

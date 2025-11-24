@@ -163,7 +163,7 @@
         </div>
 
         <div class="button-group">
-            <a href="lista_consulta.php"
+            <a href="lista_consulta.php"    
                style="padding:10px 16px;border-radius:6px;background:#bdc3c7;color:#000;text-decoration:none;font-weight:bold;">
                Ver Consultas
             </a>

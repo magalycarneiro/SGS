@@ -128,6 +128,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-decoration: none;
         }
 
         .action-btn:hover {

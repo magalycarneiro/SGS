@@ -57,4 +57,4 @@ if (!empty($resultado)) {
 
 echo $form;
 
-echo "<br><br><a href='lista_consulta.php'>Ver Lista de Consultas</a>";
+
