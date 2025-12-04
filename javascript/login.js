@@ -1,4 +1,3 @@
- // Script para seleção do tipo de usuário
         document.querySelectorAll('.user-type').forEach(type => {
             type.addEventListener('click', function() {
                 document.querySelectorAll('.user-type').forEach(t => t.classList.remove('active'));
